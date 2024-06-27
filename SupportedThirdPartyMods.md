@@ -74,6 +74,7 @@ All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
 Alpha Genes |
+Alpha Implants |
 Alpha Mechs |
 Alpha Memes |
 Alpha Mythology |
@@ -303,6 +304,7 @@ Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Tailor   |
 Megafauna	|
+Melee Animation	|
 Metal Gear Rimworld - Gekko	|
 MH: Android Tiers	|
 MH: Android Tiers Core	|
@@ -451,6 +453,7 @@ Simple Ogre Race  |
 Simply More Melee	|
 Slime Rancher	|
 Solark Race |
+Spacer Shields	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
