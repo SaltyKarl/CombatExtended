@@ -2,7 +2,7 @@
 
 namespace CombatExtended.CombatExtended.LoggerUtils
 {
-    public class CELogger
+    class CELogger
     {
         /// <summary>
         /// Am I in debug mode? Set this to <c>true</c> and recompile for more log output.
