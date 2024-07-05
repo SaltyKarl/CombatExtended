@@ -5,7 +5,6 @@ AssembliesCore/*.dll
 /Source/.vs/*
 Source/*/obj/*
 Source/*/bin/*
-/Source/*/*.csproj.user
 .vscode
 # ReSharper is a .NET coding add-in
 _ReSharper*/

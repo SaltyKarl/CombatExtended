@@ -80,6 +80,9 @@
 			<HintPath>..\packages\Rimatomics-reference.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="ShipsHaveInsides">
+		  <HintPath>..\packages\ShipsHaveInsides-reference.dll</HintPath>
+		</Reference>
 		<Reference Include="VanillaPsycastsExpanded">
 		  <HintPath>..\packages\VanillaPsycastsExpanded-reference.dll</HintPath>
 		  <Private>false</Private>
