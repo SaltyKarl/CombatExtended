@@ -106,8 +106,6 @@ namespace CombatExtended
             }
         }
 
-        public bool Active => (!SelPawn.mutant?.HasTurned ?? true) && !SelPawn.Crawling;
-
         private readonly TargetIndex[] _targetIndices = new TargetIndex[]
         {
             TargetIndex.A,
@@ -118,7 +116,7 @@ namespace CombatExtended
         public override void CompTick()
         {
             base.CompTick();
-            if (parent.IsHashIntervalTick(120) && Active)
+            if (parent.IsHashIntervalTick(120))
             {
                 /*
                  * Clear the cache if it's very outdated to allow GC to take over
@@ -198,10 +196,6 @@ namespace CombatExtended
         public override void CompTickRare()
         {
             base.CompTickRare();
-            if (!Active)
-            {
-                return;
-            }
             TryGiveTacticalJobs();
             if (_counter++ % 2 == 0)
             {
@@ -265,18 +259,15 @@ namespace CombatExtended
 
         public void Notify_BulletImpactNearby()
         {
-            if (Active)
+            foreach (ICompTactics comp in TacticalComps)
             {
-                foreach (ICompTactics comp in TacticalComps)
+                try
                 {
-                    try
-                    {
-                        comp.Notify_BulletImpactNearBy();
-                    }
-                    catch (Exception er)
-                    {
-                        Log.Error($"CE: Error running Notify_BulletImpactNearBy {comp.GetType()} with error {er}");
-                    }
+                    comp.Notify_BulletImpactNearBy();
+                }
+                catch (Exception er)
+                {
+                    Log.Error($"CE: Error running Notify_BulletImpactNearBy {comp.GetType()} with error {er}");
                 }
             }
         }

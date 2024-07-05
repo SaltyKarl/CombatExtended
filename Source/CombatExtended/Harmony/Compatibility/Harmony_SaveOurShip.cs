@@ -1,14 +1,14 @@
-﻿using System;
+using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using HarmonyLib;
-using RimWorld;
-using SaveOurShip2;
-using Verse.AI;
 using Verse;
+using System;
+using RimWorld;
+using Verse.AI;
+using SaveOurShip2;
 
-namespace CombatExtended.Compatibility.SOS2Compat
+namespace CombatExtended.HarmonyCE.Compatibility
 {
     [HarmonyPatch]
     class Harmony_Compatibility_SaveOurShip
@@ -35,7 +35,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
             }
             if (targetMethod == null)
             {
-                Log.Error($"Combat Extended :: Failed to find target method while attempting to patch SaveOurShip.");
+                Log.Error($"Failed to find target method while attempting to patch SaveOurShip.");
                 return false;
             }
             return true;

@@ -6,7 +6,7 @@
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
 		<attribute>ParentName</attribute>
-		<value>BaseWeapon</value>
+		<value>BaseWeaponAndAmmoNeolithic</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAttributeAdd">

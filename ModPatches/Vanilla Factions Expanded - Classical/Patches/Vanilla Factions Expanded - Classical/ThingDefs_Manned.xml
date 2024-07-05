@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- ========== Scorpion - Turret ========== -->
-
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName = "VFEC_Turret_Scorpion"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 	</Operation>
@@ -67,5 +65,4 @@
 			</weaponTags>
 		</value>
 	</Operation>
-
 </Patch>

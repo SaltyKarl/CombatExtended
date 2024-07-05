@@ -865,7 +865,7 @@ namespace CombatExtended
             return false;
         }
 
-        protected virtual bool TryCollideWithRoof(IntVec3 cell)
+        protected bool TryCollideWithRoof(IntVec3 cell)
         {
             if (!cell.Roofed(Map))
             {
