@@ -36,96 +36,9 @@ namespace CombatExtended.Compatibility.SOS2Compat
         public VerbPropertiesShipWeaponCE VerbPropsShip => verbProps as VerbPropertiesShipWeaponCE;
 
         #region CE Functionality
-        private Vector3 ShotSource
-        {
-            get
-            {
-                var casterPos = caster.DrawPos;
-                return new Vector3(casterPos.x, ShotHeight, casterPos.z);
-            }
-        }
 
-        // Copied from Verb_LaunchProjectileCE so we can call a modified version of CanHitFromCellIgnoringRange that checks if roofs are in the way of Line of Sight
-        public override bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
-        {
-            if (targ.HasThing && targ.Thing.Map != caster.Map)
-            {
-                resultingLine = default(ShootLine);
-                return false;
-            }
-            if (EffectiveRange <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
-            {
-                resultingLine = new ShootLine(root, targ.Cell);
-                return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
-            }
-            CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
-            float num = cellRect.ClosestDistSquaredTo(root);
-            if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
-            {
-                resultingLine = new ShootLine(root, targ.Cell);
-                return false;
-            }
-            //if (!this.verbProps.NeedsLineOfSight) This method doesn't consider the currently loaded projectile
-            if (Projectile.projectile.flyOverhead)
-            {
-                resultingLine = new ShootLine(root, targ.Cell);
-                return true;
-            }
-
-            // First check current cell for early opt-out
-            IntVec3 dest;
-            var shotSource = root.ToVector3Shifted();
-            shotSource.y = ShotHeight;
-
-            // Adjust for multi-tile turrets
-            if (caster.def.building?.IsTurret ?? false)
-            {
-                shotSource = ShotSource;
-            }
-
-            if (CanHitFromCellIgnoringRange(shotSource, targ, out dest))
-            {
-                resultingLine = new ShootLine(root, dest);
-                return true;
-            }
-
-            // For pawns, calculate possible lean locations
-            if (CasterIsPawn)
-            {
-                ShootLeanUtility.LeanShootingSourcesFromTo(root, cellRect.ClosestCellTo(root), caster.Map, tempLeanShootSources);
-                foreach (var leanLoc in tempLeanShootSources.OrderBy(c => c.DistanceTo(targ.Cell)))
-                {
-                    var leanOffset = 0.5f - 0.001f; // -0.001f ensures rounding works as intended regardless of whether leanOffset is positive or negative
-                    var leanPosOffset = (leanLoc - root).ToVector3() * leanOffset;
-                    if (CanHitFromCellIgnoringRange(shotSource + leanPosOffset, targ, out dest))
-                    {
-                        resultingLine = new ShootLine(leanLoc, dest);
-                        return true;
-                    }
-                }
-            }
-
-            resultingLine = new ShootLine(root, targ.Cell);
-            return false;
-        }
-
-        private bool CanHitFromCellIgnoringRange(Vector3 shotSource, LocalTargetInfo targ, out IntVec3 goodDest)
-        {
-            if (targ.Thing != null && targ.Thing.Map != caster.Map)
-            {
-                goodDest = IntVec3.Invalid;
-                return false;
-            }
-            if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
-            {
-                goodDest = targ.Cell;
-                return true;
-            }
-            goodDest = IntVec3.Invalid;
-            return false;
-        }
-
-        private bool CanHitCellFromCellIgnoringRange(Vector3 shotSource, IntVec3 targetLoc, Thing targetThing = null)
+        // Modified version of CanHitFromCellIgnoringRange that checks if roofs are in the way of Line of Sight
+        protected override bool CanHitCellFromCellIgnoringRange(Vector3 shotSource, IntVec3 targetLoc, Thing targetThing = null)
         {
             // Vanilla checks
             if (verbProps.mustCastOnOpenGround && (!targetLoc.Standable(caster.Map) || caster.Map.thingGrid.CellContains(targetLoc, ThingCategory.Pawn)))
@@ -383,6 +296,10 @@ namespace CombatExtended.Compatibility.SOS2Compat
         #region Shared Functionality
         public override bool CanHitTarget(LocalTargetInfo targ)
         {
+            if (GroundDefenseMode)
+            {
+                return base.CanHitTarget(targ);
+            }
             return true;
         }
 
@@ -400,7 +317,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
                     {
                         return CompChangeable.Projectile;
                     }
-                    return VerbPropsShip.defaultProjectileGround ?? VerbPropsShip.defaultProjectile; // Changed to allow for different default projectile
+                    return VerbPropsShip.defaultProjectileGround ?? VerbPropsShip.defaultProjectile; // Changed to allow for different default projectile on ground
                 }
                 if (base.EquipmentSource != null)
                 {
@@ -417,7 +334,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
 
         public override bool TryCastShot()
         {
-            if (GroundDefenseMode)
+            if (GroundDefenseMode) // Modified to use ShipProjectileCE which can be found at the bottom of this file. (Special projectile that wont explode on roof hit/has different drawing)
             {
                 Retarget();
                 repeating = true;
@@ -538,7 +455,6 @@ namespace CombatExtended.Compatibility.SOS2Compat
                             spreadDegrees,
                             aperatureSize,
                             EquipmentSource);
-
                     }
                     else
                     {
@@ -641,73 +557,7 @@ namespace CombatExtended.Compatibility.SOS2Compat
         }
         #endregion
     }
-    // Including these classes in the bottom here as they are so small and should only be used by Verb_ShootShipCE
-    public class ShipProjectileCE : ProjectileCE_Explosive
-    {
-        // Need to override the projectile drawing since we are setting it so high up and the SOS2 turret graphics are fully top down
-        // so it looks cooked with the normal logic
-        // I can't think of another easy way to alter the drawing for just the projectiles shot by Verb_ShootShip
-
-        public override void DrawAt(Vector3 drawLoc, bool flip = false)
-        {
-            if (FlightTicks == 0 && launcher != null && launcher is Pawn)
-            {
-                //TODO: Draw at the end of the barrel on the pawn
-            }
-            else
-            {
-                Quaternion shadowRotation = ExactRotation;
-                Quaternion projectileRotation = ExactRotation;
-                if (def.projectile.spinRate != 0f)
-                {
-                    float num2 = GenTicks.TicksPerRealSecond / def.projectile.spinRate;
-                    var spinRotation = Quaternion.AngleAxis(Find.TickManager.TicksGame % num2 / num2 * 360f, Vector3.up);
-                    shadowRotation *= spinRotation;
-                    projectileRotation *= spinRotation;
-                }
-                //Projectile
-                Graphics.DrawMesh(MeshPool.GridPlane(def.graphicData.drawSize), ExactPosition, projectileRotation, def.DrawMatSingle, 0);
-
-                //Shadow - Not going to bother drawing a shadow as we're essentially rendering as if we're looking directly down on the bullet
-                // (Despite the rest of rimworld not being directly top down it just matches the turrets better)
-
-                Comps_PostDraw();
-            }
-        }
-        // To stop blowing up roofs, technically its cheating but gameplay feels too punishing if not added atm TODO: Figure out a way to just not shoot if likely to hit a roof instead of target
-        protected override bool TryCollideWithRoof(IntVec3 cell)
-        {
-            if (!cell.Roofed(Map))
-            {
-                return false;
-            }
-
-            var bounds = CE_Utility.GetBoundsFor(cell, cell.GetRoof(Map));
-
-            float dist;
-            if (!bounds.IntersectRay(ShotLine, out dist))
-            {
-                return false;
-            }
-            if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
-            {
-                return false;
-            }
-
-            var point = ShotLine.GetPoint(dist);
-            ExactPosition = point;
-            landed = true;
-
-            if (Controller.settings.DebugDrawInterceptChecks)
-            {
-                MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
-            }
-
-            InterceptProjectile(null, ExactPosition, true);
-            return true;
-        }
-
-    }
+    // Including this class in the bottom here it is so small and should only be used by Verb_ShootShipCE
     public class VerbPropertiesShipWeaponCE : VerbPropertiesCE
     {
         // New properties type that includes a seperate projectile for GroundDefenseMode.
