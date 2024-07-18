@@ -58,14 +58,14 @@ namespace CombatExtended
 
         #region Properties
         // Core properties
-        public virtual bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
+        public bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
         public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
         public override LocalTargetInfo CurrentTarget => currentTargetInt;
         private bool WarmingUp => burstWarmupTicksLeft > 0;
         public override Verb AttackVerb => Gun == null ? null : GunCompEq.verbTracker.PrimaryVerb;
         public bool IsMannable => mannableComp != null;
         public bool PlayerControlled => (Faction == Faction.OfPlayer || MannedByColonist) && !MannedByNonColonist;
-        protected virtual bool CanSetForcedTarget => mannableComp != null && PlayerControlled;
+        private bool CanSetForcedTarget => mannableComp != null && PlayerControlled;
         private bool CanToggleHoldFire => PlayerControlled;
         public bool IsMortar => def.building.IsMortar;
         public bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
@@ -96,7 +96,7 @@ namespace CombatExtended
             }
         }
 
-        public virtual ThingDef Projectile
+        public ThingDef Projectile
         {
             get
             {
@@ -367,7 +367,7 @@ namespace CombatExtended
             }
         }
 
-        public virtual void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
+        public void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
         {
             // Check for ammo first
             if (!Spawned
@@ -417,7 +417,7 @@ namespace CombatExtended
             burstWarmupTicksLeft = 1;
         }
 
-        public virtual LocalTargetInfo TryFindNewTarget()    // Core method
+        public LocalTargetInfo TryFindNewTarget()    // Core method
         {
             IAttackTargetSearcher attackTargetSearcher = this.TargSearcher();
             Faction faction = attackTargetSearcher.Thing.Faction;
@@ -484,7 +484,7 @@ namespace CombatExtended
             return true;
         }
 
-        public virtual void BeginBurst()                     // Added handling for ticksUntilAutoReload
+        public void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
             if (AttackVerb is Verb_ShootMortarCE shootMortar)
@@ -512,7 +512,7 @@ namespace CombatExtended
             OnAttackedTarget(CurrentTarget);
         }
 
-        public virtual void BurstComplete()                  // Added CompAmmo reload check
+        public void BurstComplete()                  // Added CompAmmo reload check
         {
             burstCooldownTicksLeft = BurstCooldownTime().SecondsToTicks();
             if (CompAmmo != null && CompAmmo.CurMagCount <= 0)
@@ -784,7 +784,7 @@ namespace CombatExtended
         [Compatibility.Multiplayer.SyncMethod]
         private void SyncedResetForcedTarget() => ResetForcedTarget();
 
-        public virtual void ResetForcedTarget()                // Core method
+        public void ResetForcedTarget()                // Core method
         {
             this.targetingWorldMap = false;
             this.forcedTarget = LocalTargetInfo.Invalid;
