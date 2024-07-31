@@ -12,7 +12,7 @@ using CombatExtended.Compatibility;
 
 namespace CombatExtended.CombatExtended.Jobs.Utils
 {
-    public class JobGiverUtils_Reload
+    class JobGiverUtils_Reload
     {
         /// <summary>
         /// The maximum allowed pathing cost to reach potential ammo. 2 ingame hours.
