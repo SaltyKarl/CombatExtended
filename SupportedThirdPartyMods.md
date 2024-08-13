@@ -132,6 +132,7 @@ Big and Small - Vampires and the Undead  |
 Big and Small - Weapons	|
 Biomes! Caverns	|
 Biomes! Core	|
+Biotech Expansion - Insectoid   |
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
 Biotech Mech Stuff Elongated - Mechanoid Upgrades V2  |
@@ -349,7 +350,6 @@ Nanosuit    |
 Nearmare Race	|
 Neclose Race	|
 New Mech: Mini-Miner    |
-NewRatkinPlus |
 Ni'Hal	|
 Nukes   |
 Nyaron Race |
@@ -483,6 +483,7 @@ The Tuffalo |
 Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
+Titan Vehicles Continued |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
 Tribal Warrior Set! |
@@ -537,6 +538,7 @@ Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
 Vanilla Vehicles Expanded - Tier 3  |
+Vanilla Vehicles Expanded - Upgrades    |
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/AbilityDef[defName="BTEIst_VolatileStingLauncher" or defName="BTEIst_ToxicStingLauncher"]/verbProperties/range</xpath>
 		<value>
-			<range>21</range>
+			<range>28</range>
 		</value>
 	</Operation>
 	
@@ -58,4 +59,5 @@
 			</projectile>
 		</value>
 	</Operation>
+
 </Patch>
