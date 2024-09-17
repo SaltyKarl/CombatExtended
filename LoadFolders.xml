@@ -101,6 +101,7 @@
 		<li IfModActive="Bonible.Charge.Lee.Enfield">ModPatches/Charge-Loading Lee-Enfield</li>
 		<li IfModActive="JangoDsoul.TierArmor.Civil">ModPatches/Civilization Beyond Earth Armor Sets</li>
 		<li IfModActive="Taranchuk.ClaySoldeirs">ModPatches/Clay Soldier Race</li>
+    <li IfModActive="awgv.colonialshuttle">ModPatches/Colonial Shuttle</li>
 		<li IfModActive="Mckay.ColonyLeadership.11">ModPatches/Colony Leadership</li>
 		<li IfModActive="CEC.CombatEnthuCore, Mlie.CombatEnthusiastsCollection">ModPatches/Combat Enthusiast's Collection</li>
 		<li IfModActive="ComigoGames.Water.Turrets">ModPatches/Comigo's Fancy Floating Turrets</li>
@@ -376,6 +377,7 @@
 		<li IfModActive="JangoDsoul.T45b.PowerArmor">ModPatches/PowerArmour T-45b</li>
 		<li IfModActive="Pratt.RaW.WWIIWeaponsPackVanilla">ModPatches/Pratt WWII Weapons Pack</li>
 		<li IfModActive="PrestigePhoenix.maltum">ModPatches/Prestige Specialist Armor</li>
+		<li IfModActive="botchjob.profaned">ModPatches/Profaned</li>
 		<li IfModActive="PRF.Materials">ModPatches/Project RimFactory - Materials</li>
 		<li IfModActive="DimonSever000.ProsthesesPlus13.Specific">ModPatches/Prostheses+</li>
 		<li IfModActive="bonible.protoswords">ModPatches/Protoswords</li>
@@ -487,7 +489,7 @@
 		<li IfModActive="Mlie.SpaceWorms">ModPatches/Spaceworm</li>
 		<li IfModActive="HALO.RSF, Mlie.RimworldSpartanFoundry">ModPatches/Spartan Foundry</li>
 		<li IfModActive="Mlie.SpidercampsHorses">ModPatches/Spidercamp's Horses</li>
-		<li IfModActive="AKRI.StarcraftersArmory_copy">ModPatches/Star Crafter's Armory</li>
+		<li IfModActive="akri.starcraftersarmory">ModPatches/Star Crafter's Armory</li>
 		<li IfModActive="projectjedi.factions">ModPatches/Star Wars - Factions</li>
 		<li IfModActive="walkingproblem.arachnid">ModPatches/Starship Troopers Arachnids</li>
 		<li IfModActive="Koni.Misc.SteamworldUniforms">ModPatches/Steamworld Uniforms</li>
@@ -617,6 +619,7 @@
 		<li IfModActive="pphhyy.ExpandedMechsScyther">ModPatches/pphhyy Expanded Scythers</li>
 		<li IfModActive="pphhyy.SanguinaryAnimals">ModPatches/pphhyy Sanguinary Animals</li>
 		<li IfModActive="pphhyy.LightlessEmpyrean">ModPatches/pphhyy's Lightless Empyrean</li>
+		<li IfModActive="heis.edo.themed.expansion">ModPatches/EdoThemedExpansion</li>
 		<!-- Mod Patches (Assemblies) -->		
 		<li IfModActive="rwmt.Multiplayer">ModPatches/Multiplayer</li>
 		<li IfModActive="smashphil.neceros.srtsexpanded">ModPatches/SRTS</li>
