@@ -382,6 +382,7 @@ Outer Rim - Tatooine    |
 Palm Cats   |
 Paniel the Automata |
 Pawnbold Race   |
+Persona Warcasket Weapons   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
 Possessed Weapons	|
@@ -579,7 +580,6 @@ Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Barbatos Gundam Addon  |
-Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
 Warhammer 40.000 - Imperium Weaponry    |
 Warhammer 40.000 - Imperium Materials   |
