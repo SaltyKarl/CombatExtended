@@ -547,6 +547,7 @@ Vanilla Persona Weapons Expanded   |
 Vanilla Plants Expanded - Mushrooms  |
 Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
+Vanilla Psycasts Expanded - Runesmith   |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
@@ -588,6 +589,7 @@ WarCasket Barbatos Gundam Addon  |
 Warcaskets: Adeptus Astartes    |
 Warhammer 40.000 - Imperium Weaponry    |
 Warhammer 40.000 - Imperium Materials   |
+Warhammer 40k - Factions  |
 Warhammer 40k - Genes and Psycasts  |
 Warhammer"ish" - Dryad    |
 Wasters Toxic Breather  |
