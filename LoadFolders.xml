@@ -488,6 +488,7 @@
 		<li IfModActive="Cabbage.RimCities">ModPatches/RimCities</li>
 		<li IfModActive="Sierra.RF.HouseDoyle">ModPatches/RimFantasy - House Doyle</li>
 		<li IfModActive="Sierra.RF.MedievalOverhaul">ModPatches/RimFantasy - Medieval Overhaul Edition</li>
+		<li IfModActive="JTC.Grineer">ModPatches/Rimframe Vatgrown Hate</li>
 		<li IfModActive="Aoba.GeryKnights.Dreadnought">ModPatches/RimHammer40k -Dreadnought</li>
 		<li IfModActive="sindre0830.rimnauts2">ModPatches/RimNauts 2</li>
 		<li IfModActive="Mlie.Rimrats">ModPatches/Rimrats</li>

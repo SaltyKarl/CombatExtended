@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<DamageDef ParentName="Bomb">
+		<defName>Fake_Bomb</defName>
+		<minDamageToFragment>99999</minDamageToFragment>
+		<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+		<soundExplosion>Deflect_Metal</soundExplosion>
+	</DamageDef>
+
+	<ThingCategoryDef>
+		<defName>Ammodrakgoon</defName>
+		<label>drakgoon flak</label>
+		<parent>AmmoShotguns</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_drakgoon</defName>
+		<label>drakgoon flak</label>
+		<ammoTypes>
+			<Ammo_drakgoon_Buck>Bullet_drakgoon_Buck</Ammo_drakgoon_Buck>
+			<Ammo_drakgoon_Slug>Bullet_drakgoon_Slug</Ammo_drakgoon_Slug>
+			<Ammo_drakgoon_ElectroSlug>Bullet_drakgoon_ElectroSlug</Ammo_drakgoon_ElectroSlug>
+		</ammoTypes>
+		<similarTo>AmmoSet_Shotgun</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="drakgoonBase" ParentName="AmmoBase" Abstract="True">
+		<description>Very common shotgun caliber used mostly for big game hunting.</description>
+		<statBases>
+			<Mass>0.087</Mass>
+			<Bulk>0.09</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+    		<li>CE_40K_Ammo</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammodrakgoon</li>
+		</thingCategories>
+		<stackLimit>5000</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="drakgoonBase">
+		<defName>Ammo_drakgoon_Buck</defName>
+		<label>drakgoon shell (Buck)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Shotgun/Shot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>BuckShot</ammoClass>
+		<cookOffProjectile>Bullet_drakgoon_Buck</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="drakgoonBase">
+		<defName>Ammo_drakgoon_Slug</defName>
+		<label>drakgoon shell (Slug)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Shotgun/Slug</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.074</Mass>
+		</statBases>
+		<ammoClass>Slug</ammoClass>
+		<cookOffProjectile>Bullet_drakgoon_Slug</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="drakgoonBase">
+		<defName>Ammo_drakgoon_ElectroSlug</defName>
+		<label>drakgoon shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Shotgun/EMP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.086</Mass>
+		</statBases>
+		<ammoClass>ElectroSlug</ammoClass>
+		<generateAllowChance>0.5</generateAllowChance>
+		<cookOffProjectile>Bullet_drakgoon_ElectroSlug</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base12drakgoonBullet" ParentName="BaseExplosiveBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>83</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Bullet_drakgoon_Buck</defName>
+		<label>drakgoon pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>8</damageAmountBase>
+			<pelletCount>18</pelletCount>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
+			<spreadMult>8.9</spreadMult>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>0</damageAmountBase>
+				<explosiveDamageType>Fake_Bomb</explosiveDamageType>
+				<explosiveRadius>0.01</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_drakgoon_Buck_A>1</Fragment_drakgoon_Buck_A>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Fragment_drakgoon_Buck_A</defName>
+		<label>drakgoon pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>2</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>0</damageAmountBase>
+				<explosiveDamageType>Fake_Bomb</explosiveDamageType>
+				<explosiveRadius>0.01</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_drakgoon_Buck_B>1</Fragment_drakgoon_Buck_B>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Fragment_drakgoon_Buck_B</defName>
+		<label>drakgoon pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.52</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>1</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Bullet_drakgoon_Slug</defName>
+		<label>drakgoon slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>114</speed>
+			<damageAmountBase>28</damageAmountBase>
+			<pelletCount>2</pelletCount>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>85.2</armorPenetrationBlunt>
+			<casingMoteDefname>Fleck_ShotgunShell_Green</casingMoteDefname>
+			<casingFilthDefname>Filth_ShotgunAmmoCasings_Green</casingFilthDefname>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>7</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>0</damageAmountBase>
+				<explosiveDamageType>Fake_Bomb</explosiveDamageType>
+				<explosiveRadius>0.01</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_drakgoon_Slug_A>1</Fragment_drakgoon_Slug_A>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Fragment_drakgoon_Slug_A</defName>
+		<label>drakgoon slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>114</speed>
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>85.2</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>5</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>0</damageAmountBase>
+				<explosiveDamageType>Fake_Bomb</explosiveDamageType>
+				<explosiveRadius>0.01</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_drakgoon_Slug_B>1</Fragment_drakgoon_Slug_B>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Fragment_drakgoon_Slug_B</defName>
+		<label>drakgoon slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>114</speed>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>85.2</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>3</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>0</damageAmountBase>
+				<explosiveDamageType>Fake_Bomb</explosiveDamageType>
+				<explosiveRadius>0.01</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_drakgoon_Buck_C>1</Fragment_drakgoon_Buck_C>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Fragment_drakgoon_Slug_C</defName>
+		<label>drakgoon slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>114</speed>
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>85.2</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>1</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Bullet_drakgoon_ElectroSlug</defName>
+		<label>EMP slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>(68,210,215)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>43</speed>
+			<damageDef>EMP</damageDef>
+			<pelletCount>2</pelletCount>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<empShieldBreakChance>0.2</empShieldBreakChance>
+			<casingMoteDefname>Fleck_ShotgunShell_Black</casingMoteDefname>
+			<casingFilthDefname>Filth_ShotgunAmmoCasings_Black</casingFilthDefname>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>0</damageAmountBase>
+				<explosiveDamageType>Fake_Bomb</explosiveDamageType>
+				<explosiveRadius>0.01</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_drakgoon_ElectroSlug_A>1</Fragment_drakgoon_ElectroSlug_A>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Fragment_drakgoon_ElectroSlug_A</defName>
+		<label>EMP slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>(68,210,215)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>43</speed>
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>9</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<empShieldBreakChance>0.15</empShieldBreakChance>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>0</damageAmountBase>
+				<explosiveDamageType>Fake_Bomb</explosiveDamageType>
+				<explosiveRadius>0.15</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_drakgoon_ElectroSlug_B>1</Fragment_drakgoon_ElectroSlug_B>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base12drakgoonBullet">
+		<defName>Fragment_drakgoon_ElectroSlug_B</defName>
+		<label>EMP slug</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>(68,210,215)</color>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>43</speed>
+			<damageDef>EMP</damageDef>
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<empShieldBreakChance>0.1</empShieldBreakChance>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_drakgoon_Buck</defName>
+		<label>make drakgoon (Buck) shell x100</label>
+		<description>Craft 100 drakgoon (Buck) shells.</description>
+		<jobString>Making drakgoon (Buck) shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>36</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_drakgoon_Buck>100</Ammo_drakgoon_Buck>
+		</products>
+		<workAmount>3600</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_drakgoon_Slug</defName>
+		<label>make drakgoon (Slug) shell x100</label>
+		<description>Craft 100 drakgoon (Slug) shells.</description>
+		<jobString>Making drakgoon (Slug) shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_drakgoon_Slug>100</Ammo_drakgoon_Slug>
+		</products>
+		<workAmount>3000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_drakgoon_ElectroSlug</defName>
+		<label>make drakgoon (EMP) shell x100</label>
+		<description>Craft 100 drakgoon (EMP) shells.</description>
+		<jobString>Making drakgoon (EMP) shells.</jobString>
+		<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>36</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_drakgoon_ElectroSlug>100</Ammo_drakgoon_ElectroSlug>
+		</products>
+		<skillRequirements>
+			<Crafting>4</Crafting>
+		</skillRequirements>
+		<workAmount>7800</workAmount>
+	</RecipeDef>
+
+
+</Defs>
