@@ -38,8 +38,8 @@
 			defName="Gun_Hind" or
 			defName="Gun_Sobek" or
 			defName="Gun_Vulkar" or
-			defName="Gun_SniperRifle" or
-			defName="Gun_Grakata"
+			defName="Gun_Gorgon" or
+			defName="Gun_Drakgoon"
 			]/tools
 		</xpath>
 		<value>
@@ -466,6 +466,26 @@
 	</Operation>
 
 	<!-- ========== Drakgoon ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_Drakgoon"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li>
+					<verbClass>Verb_Shoot</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_Gorgon</defaultProjectile>
+					<warmupTime>1.8</warmupTime>
+					<range>28.9</range>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<burstShotCount>18</burstShotCount>
+					<soundCast>Shot_Minigun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_Drakgoon</defName>
