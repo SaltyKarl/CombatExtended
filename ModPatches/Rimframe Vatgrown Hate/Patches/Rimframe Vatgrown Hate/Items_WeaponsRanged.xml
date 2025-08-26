@@ -39,7 +39,8 @@
 			defName="Gun_Sobek" or
 			defName="Gun_Vulkar" or
 			defName="Gun_Gorgon" or
-			defName="Gun_Drakgoon"
+			defName="Gun_Drakgoon" or
+			defName="Gun_Gotva"
 			]/tools
 		</xpath>
 		<value>
@@ -102,7 +103,7 @@
 			<recoilAmount>1.5</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_762x25mmTokarev_FMJ</defaultProjectile>
 			<warmupTime>0.6</warmupTime>
 			<range>12</range>
 			<burstShotCount>7</burstShotCount>
@@ -114,7 +115,7 @@
 		<AmmoUser>
 			<magazineSize>14</magazineSize>
 			<reloadTime>2</reloadTime>
-			<ammoSet>AmmoSet_45ACP</ammoSet>
+			<ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -526,6 +527,45 @@
 		</FireModes>
 		<weaponTags>
 			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Gotva Prime ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_Gotva</defName>
+		<statBases>
+			<Mass>8.5</Mass>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>1.37</SwayFactor>
+			<Bulk>12</Bulk>
+			<SightsEfficiency>1</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.45</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<range>55</range>
+			<soundCast>Shot_AssaultRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>84</magazineSize>
+			<reloadTime>7</reloadTime>
+			<ammoSet>AmmoSet_762x54mmR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_AR</li>
 		</weaponTags>
 	</Operation>
 

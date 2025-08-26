@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Shield Base -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_G_Lancershield"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Apparel_Shield</thingClass>
+		</value>
+	</Operation>
+
+	<!-- Crypto Shield -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_G_Lancershield"]</xpath>
+		<value>
+
+			<ThingDef ParentName="ShieldBase">
+				<defName>Apparel_G_Lancershield</defName>
+				<label>Lancer Shield</label>
+				<description>A basic ballistics shield used by lower ranking grineer to block incoming fire.</description>
+				<techLevel>Spacer</techLevel>
+				<graphicData>
+					<texPath>Things/Grineersuits/LancerShield/LancerShield_south</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1.3</drawSize>
+				</graphicData>
+				<thingClass>CombatExtended.Apparel_Shield</thingClass>
+				<recipeMaker>
+					<unfinishedThingDef>UnfinishedBelt</unfinishedThingDef>
+					<researchPrerequisite>RF_Grineerarmor</researchPrerequisite>
+					<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+					<workSkill>Crafting</workSkill>
+					<effectWorking>Smith</effectWorking>
+					<soundWorking>Recipe_Machining</soundWorking>
+					<recipeUsers Inherit="False">
+						<li>G_Foundry</li>
+					</recipeUsers>
+					<useIngredientsForColor>false</useIngredientsForColor>
+					<skillRequirements>
+						<Crafting>5</Crafting>
+					</skillRequirements>
+					<displayPriority>1</displayPriority>
+				</recipeMaker>
+				<costList>
+					<ComponentIndustrial>1</ComponentIndustrial>
+					<Steel>35</Steel>
+					<G_Alloyplate>10</G_Alloyplate>
+				</costList>
+				<tradeTags Inherit="False">
+					<li>GrineerArmor</li>
+				</tradeTags>
+				<statBases>
+					<MaxHitPoints>200</MaxHitPoints>
+					<Flammability>0</Flammability>
+					<ArmorRating_Sharp>7</ArmorRating_Sharp>
+					<ArmorRating_Blunt>9</ArmorRating_Blunt>
+					<ArmorRating_Heat>0.25</ArmorRating_Heat>
+					<WorkToMake>7500</WorkToMake>
+					<Mass>7.5</Mass>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</statBases>
+				<equippedStatOffsets>
+					<ReloadSpeed>-0.1</ReloadSpeed>
+					<MeleeHitChance>-1</MeleeHitChance>
+					<ShootingAccuracyPawn>-0.2</ShootingAccuracyPawn>
+					<AimingAccuracy>-0.1</AimingAccuracy>
+					<Suppressability>-0.25</Suppressability>
+					<MeleeCritChance>-0.08</MeleeCritChance>
+					<MeleeParryChance>1.0</MeleeParryChance>
+				</equippedStatOffsets>
+				<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+				<comps>
+					<li>
+						<compClass>CompColorable</compClass>
+					</li>
+				</comps>
+				<apparel>
+					<tags>
+						<li>GrineerRiotShield</li>
+					</tags>
+					<renderNodeProperties>
+						<li>
+							<nodeClass>CombatExtended.PawnRenderNode_Apparel</nodeClass>
+							<workerClass>CombatExtended.PawnRenderNodeWorker_Drafted</workerClass>
+							<texPath>Things/Grineersuits/LancerShield/LancerShield</texPath>
+							<shaderTypeDef>CutoutComplex</shaderTypeDef>
+							<parentTagDef>ApparelBody</parentTagDef>
+							<drawData>
+								<defaultData>
+									<layer>80</layer>
+								</defaultData>
+								<dataEast>
+									<layer>-5</layer>
+									<offset>(0.3, 0.0, -0.2)</offset>
+									<rotationOffset>30</rotationOffset>
+								</dataEast>
+								<dataWest>
+									<rotationOffset>-30</rotationOffset>
+									<offset>(-0.3, 0.0, -0.2)</offset>
+								</dataWest>
+								<dataNorth>
+									<layer>-5</layer>
+									<offset>(-0.3, 0.0, -0.2)</offset>
+								</dataNorth>
+								<dataSouth>
+									<offset>(0.3, 0., -0.2)</offset>
+								</dataSouth>
+							</drawData>
+						</li>
+					</renderNodeProperties>
+				</apparel>
+				<modExtensions>
+					<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+							<li>Arms</li>
+							<li>Shoulders</li>
+							<li>Torso</li>
+							<li>Neck</li>
+						</shieldCoverage>
+						<crouchCoverage>
+							<li>Legs</li>
+						</crouchCoverage>
+					</li>
+				</modExtensions>
+			</ThingDef>
+
+		</value>
+	</Operation>
+
+</Patch>
