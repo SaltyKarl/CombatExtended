@@ -25,4 +25,4 @@ UnityEngine.dll
 
 .idea/
 __pycache__
-ModPatches/*/Assemblies/
+#ModPatches/*/Assemblies/
