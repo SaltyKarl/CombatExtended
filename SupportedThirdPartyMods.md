@@ -630,6 +630,7 @@ Vanilla Psycasts Expanded   |
 Vanilla Psycasts Expanded - Hemosage  |
 Vanilla Psycasts Expanded - Runesmith   |
 Vanilla Quests Expanded - Cryptoforge  |
+Vanilla Quests Expanded - Deadlife  |
 Vanilla Quests Expanded - Ancients  |
 Vanilla Quests Expanded - Deadlife  |
 Vanilla Races Expanded - Android  |
