@@ -186,6 +186,8 @@ public static class AmmoInjector
                         foreach (string curTag in craftingTags)
                         {
                             ThingDef bench;
+                            ThingDef benchVFE = null;
+                            ThingDef benchVGE = null;
                             if (curTag == enableCraftingTag)
                             {
                                 bench = CE_ThingDefOf.AmmoBench;
@@ -213,8 +215,56 @@ public static class AmmoInjector
                                 {
                                     ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
                                 }
+                                if (ModLister.HasActiveModWithName("Vanilla Gravship Expanded - Chapter 1"))
+                                {
+                                    string benchNameVGE = null;
+                                    if (curTag == "CE_AutoEnableCrafting_ElectricSmithy" || curTag == "CE_AutoEnableCrafting_FueledSmithy")
+                                    {
+                                        benchNameVGE = "VGE_CompactSmithy";
+                                    }
+                                    if (curTag == "CE_AutoEnableCrafting_DrugLab")
+                                    {
+                                        benchNameVGE = "VGE_CompactDrugLab";
+                                    }
+                                    if (curTag == "CE_AutoEnableCrafting_TableMachining")
+                                    {
+                                        benchNameVGE = "VGE_CompactMachiningTable";
+                                    }
+                                    if (curTag == "CE_AutoEnableCrafting_FabricationBench")
+                                    {
+                                        benchNameVGE = "VGE_CompactFabBench";
+                                    }
+                                    if (benchNameVGE != null)
+                                    {
+                                        benchVGE = DefDatabase<ThingDef>.GetNamed(benchNameVGE, false);
+                                        if (benchVGE == null)
+                                        {
+                                            Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no VGE crafting bench with defName=" + benchNameVGE + " could be found for tag " + curTag);
+                                            continue;
+                                        }
+                                    }
+                                }
                             }
                             ToggleRecipeOnBench(recipe, bench, ammoEnabled);
+                            if (benchVFE != null)
+                            {
+                                ToggleRecipeOnBench(recipe, benchVFE, ammoEnabled);
+                            }
+                            if (benchVGE != null)
+                            {
+                                ToggleRecipeOnBench(recipe, benchVGE, ammoEnabled);
+                            }
+                            /*
+                            // Toggle recipe
+                            if (enabled)
+                            {
+                                recipe.recipeUsers.Add(bench);
+                            }
+                            else
+                            {
+                                recipe.recipeUsers.RemoveAll(x => x.defName == bench.defName);
+                            }
+                            */
                         }
                     }
                 }
