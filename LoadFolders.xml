@@ -23,6 +23,7 @@
 		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">ModPatches/ADogSaid2</li>
 		<li IfModActive="Millap.AOC">ModPatches/AOC The Cleanup Devil</li>
 		<li IfModActive="Ravvy.AMW">ModPatches/Advanced Mechanoid Warfare</li>
+		<li IfModActive="Sobb.AdvancedMechanoids">ModPatches/Advanced Mechanoids</li>
 		<li IfModActive="Mlie.AdvancedMortar">ModPatches/Advanced Mortar</li>
 		<li IfModActive="EV.all.tech.melee">ModPatches/All-Tech Melee</li>
 		<li IfModActive="sarg.alphaanimals">ModPatches/Alpha Animals</li>
@@ -258,7 +259,7 @@
 		<li IfModActive="detvisor.glitterweaponry">ModPatches/Glitter Weaponry</li>
 		<li IfModActive="RooAndGloomy.DragonianRaceMod">ModPatches/Gloomy Dragonian Race</li>
 		<li IfModActive="spoonshortage.gourimet">ModPatches/GouRIMet</li>
-		<li IfModActive="pphhyy.Guldennew">ModPatches/Gulden Mod</li>
+		<li IfModActive="pphhyy.Gulden">ModPatches/Gulden Mod</li>
 		<li IfModActive="Monti.HalfDragons">ModPatches/Half Dragons</li>
 		<li IfModActive="HLX.RimworldUNSCArmoury">ModPatches/Halo - UNSC Armoury</li>
 		<li IfModActive="TheInfinityIQ.Halo.UNSC">ModPatches/Halo UNSC Weapon Pack</li>
@@ -602,6 +603,7 @@
 		<li IfModActive="Trickity.WC.Rags">ModPatches/T's Wild Child Rags</li>
 		<li IfModActive="balistafreak.TacticalExtremityProtection">ModPatches/Tactical Extremity Protection [BAL]</li>
 		<li IfModActive="TextilesPlus.velcroboy333">ModPatches/Textiles+</li>
+		<li IfModActive="Pyro.TieredMechs">ModPatches/Tiered Mechs</li>		
 		<li IfModActive="MortStrudel.CorporationFaction">ModPatches/The Corporation - Mort's Factions</li>
 		<li IfModActive="HC.GiantRace">ModPatches/The GiantRace</li>
 		<li IfModActive="sarg.jorisexperience">ModPatches/The Joris Experience</li>
@@ -652,6 +654,7 @@
 		<li IfModActive="VanillaExpanded.BaseGeneration">ModPatches/Vanilla Base Generation Expanded</li>
 		<li IfModActive="VanillaExpanded.VBrewE">ModPatches/Vanilla Brewing Expanded</li>
 		<li IfModActive="VanillaExpanded.VChemfuelE">ModPatches/Vanilla Chemfuel Expanded</li>
+		<li IfModActive="VanillaExpanded.VEE">ModPatches/Vanilla Events Expanded</li>		
 		<li IfModActive="VanillaExpanded.VFEA">ModPatches/Vanilla Factions Expanded - Ancients</li>
 		<li IfModActive="OskarPotocki.VFE.Classical">ModPatches/Vanilla Factions Expanded - Classical</li>
 		<li IfModActive="OskarPotocki.VFE.Deserters">ModPatches/Vanilla Factions Expanded - Deserters</li>

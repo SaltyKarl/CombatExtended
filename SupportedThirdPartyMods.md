@@ -76,6 +76,7 @@ ABF: Utility Synstructs   |
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
+Advanced Mechanoids |
 All-Tech Melee |
 Alpha Animals |
 Alpha Biomes |
@@ -574,6 +575,7 @@ Supernatural Weapons    |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
+Tiered Mechs    |
 The Corporation - Mort's Factions   |
 The Mantodean insectoid race	|
 The Profaned	|
@@ -617,6 +619,7 @@ Vanilla Arsenal |
 Vanilla Base Generation Expanded    |
 Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
+Vanilla Events Expanded   |
 Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
 Vanilla Factions Expanded - Deserters  |

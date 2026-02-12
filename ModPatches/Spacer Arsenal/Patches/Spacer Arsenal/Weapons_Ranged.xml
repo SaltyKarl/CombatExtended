@@ -2,11 +2,9 @@
 <Patch>
 
 	<!-- Tools -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="DV_Gun_ClashHMG" or
-			defName="DV_Gun_SonicStunner" or
 			defName="DV_Gun_BruteRifle" or
 			defName="DV_Gun_PhotonSMG" or
 			defName="DV_Gun_PlasmaBlaster" or
@@ -51,8 +49,37 @@
 		</value>
 	</Operation>
 
-	<!-- Clash HMG -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="DV_Gun_SonicStunner"]/tools
+		</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+	</Operation>
 
+	<!-- Clash HMG -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_ClashHMG</defName>
 		<statBases>
@@ -95,17 +122,7 @@
 		<xpath>Defs/ThingDef[defName="DV_Gun_ClashHMG"]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DV_Gun_ClashHMG"]/description</xpath>
-		<value>
-			<description>A portable heavy machine gun chambered in high caliber cartridge. Recoil
-				mitigation technology helps to reduce felt recoil, improving accuracy and handling,
-				compared to industrial tech weapons.</description>
-		</value>
-	</Operation>
-
 	<!-- Coilgun Sniper -->
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_CoilgunLance</defName>
 		<statBases>
@@ -130,7 +147,7 @@
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
 			<reloadTime>4</reloadTime>
-			<ammoSet>AmmoSet_8mmRailgun_CoilgunLance</ammoSet>
+			<ammoSet>AmmoSet_6mmRailgun_CoilgunLance</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -143,7 +160,6 @@
 	</Operation>
 
 	<!-- Photon Blaster -->
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_PhotonSMG</defName>
 		<statBases>
@@ -224,7 +240,6 @@
 	</Operation>
 
 	<!-- Brute Rifle -->
-
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_BruteRifle</defName>
 		<statBases>
@@ -261,13 +276,6 @@
 
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="DV_Gun_BruteRifle"]/equippedStatOffsets/MoveSpeed</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DV_Gun_BruteRifle"]/description</xpath>
-		<value>
-			<description>A super-heavy assault weapon chambered in high-caliber cartridge.</description>
-		</value>
 	</Operation>
 
 	<!-- Neutron Streamer -->
@@ -342,7 +350,6 @@
 		</value>
 	</Operation>
 
-
 	<!-- Clash Rifle -->
 
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -359,8 +366,8 @@
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
 			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-			<burstShotCount>7</burstShotCount>
-			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
 			<warmupTime>1.2</warmupTime>
 			<range>54</range>
 			<soundCast>Shot_Minigun</soundCast>
@@ -383,28 +390,10 @@
 		</weaponTags>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="DV_Gun_ClashRifle"]/description</xpath>
-		<value>
-			<description>A bullpup assault rifle chambered in full power rifle cartridge. Recoil
-				mitigation technology helps to reduce felt recoil, improving accuracy and handling,
-				compared to industrial tech weapons.</description>
-		</value>
-	</Operation>
-
 	<!-- Laserpulse Longrifle -->
 
 	<!-- Due to complications with patching (Yet another case of adding Defs with patches) I have
 	been forced to do this-->
-
-	<!-- Delete the Vanilla Def -->
-
-	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
-		<attribute>ParentName</attribute>
-		<value>BaseHumanMakeableGun</value>
-	</Operation>
-	<!-- Add the CE-fied Def -->
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
@@ -412,6 +401,13 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BaseHumanMakeableGun</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]/tools
 					</xpath>
@@ -451,6 +447,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>DV_Gun_LaserpulseLongrifle</defName>
 					<statBases>
@@ -492,26 +489,27 @@
 						<li>Longrifle</li>
 					</weaponTags>
 				</li>
+
+				<li Class="PatchOperationAddModExtension">
+				  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+					  <value>
+						  <li Class="EBSGFramework.EquipRestrictExtension">
+							<requiredGenesToEquip>
+								<li>DV_Farsighted</li>
+							</requiredGenesToEquip>
+						  </li>
+					  </value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+				  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+					<value>
+						<equippedAngleOffset>45</equippedAngleOffset>
+					</value>
+				</li>
+
 			</operations>
 		</match>
-	</Operation>
-	
-	<Operation Class="PatchOperationAddModExtension">
-	  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
-		  <value>
-			  <li Class="EBSGFramework.EquipRestrictExtension">
-					<requiredGenesToEquip>
-						<li>DV_Farsighted</li>
-					</requiredGenesToEquip>
-			  </li>
-		  </value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-	  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
-		  <value>
-			<equippedAngleOffset>45</equippedAngleOffset>
-		  </value>
 	</Operation>
 	
 </Patch>
