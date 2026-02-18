@@ -248,6 +248,7 @@
 		<li IfModActive="RicoFox233.GirlsFrontline.404Team">ModPatches/Girls Frontline Styles 404 Team</li>
 		<li IfModActive="RicoFox233.GirlsFrontline.ARTeam">ModPatches/Girls Frontline Styles AR Team</li>
 		<li IfModActive="RicoFox233.GirlsFrontline.DEFYTeam">ModPatches/Girls Frontline Styles DEFY Team</li>
+		<li IfModActive="RicoFox233.PNC.GFYTPack">ModPatches/Girls Frontline Project Neural Cloud</li>
 		<li IfModActive="Jupiter.EXILIUM">ModPatches/Girls Frontline Styles GF2</li>
 		<li IfModActive="RicoFox233.NL.GFPack">ModPatches/Girls Frontline Styles NL</li>
 		<li IfModActive="RicoFox233.PTC.GFPack">ModPatches/Girls Frontline Styles PtW</li>
@@ -388,7 +389,7 @@
 		<li IfModActive="noodlesking.MorePsycasts">ModPatches/More Psycasts</li>
 		<li IfModActive="SGC.moreutilitypacks,zal.moreutilitypacks">ModPatches/More Utility Packs</li>
 		<li IfModActive="paradox.morevanillaturrets">ModPatches/More Vanilla Turrets</li>
-		<li IfModActive="Orion.MoreMechanoids">ModPatches/MoreMechanoids</li>
+		<li IfModActive="Orion.MoreMechanoids,zal.moremechanoids">ModPatches/MoreMechanoids</li>
 		<li IfModActive="Morgante.MorganteMafiaWeaponsPack_copy">ModPatches/Morgante Mafia Weapons Pack</li>
 		<li IfModActive="Morgante.WW2ItalianWeapons_copy">ModPatches/Morgante WW2 Italian Weapons</li>
 		<li IfModActive="SirMashedPotato.MorrowRim">ModPatches/MorrowRim</li>
@@ -404,6 +405,7 @@
 		<li IfModActive="Ayameduki.HARNearmare">ModPatches/Nearmare Race</li>
 		<li IfModActive="Ayameduki.HARNeclose">ModPatches/Neclose Race</li>
 		<li IfModActive="Slashandz.MiniMiner">ModPatches/New Mech - Mini-Miner</li>
+		<li IfModActive="RicoFox233.GOV.NikkePilgrim">ModPatches/Nikke The Pilgrim GOV</li>
 		<li IfModActive="Sov.Nephilim">ModPatches/Nephilim Xenotype Reborn</li>
 		<li IfModActive="zerithos.NiHal">ModPatches/Nihal</li>
 		<li IfModActive="Aoba.Cannon, Mlie.NotOnlyJustACannon">ModPatches/Not Only Just A Cannon</li>
