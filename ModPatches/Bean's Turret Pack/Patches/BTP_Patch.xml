@@ -139,7 +139,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_TOW2A</defaultProjectile>
+			<defaultProjectile>Bullet_BGM71_HEAT</defaultProjectile>
 			<warmupTime>2.7</warmupTime>
 			<range>66</range>
 			<soundCast>BTP_HellfireSentry_Sound</soundCast>
@@ -154,7 +154,7 @@
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
 			<reloadTime>7</reloadTime>
-			<ammoSet>AmmoSet_TOW2A</ammoSet>
+			<ammoSet>AmmoSet_BGM71</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
