@@ -4,16 +4,12 @@
 	<!-- Remove refuelable property -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_ChargeRailgun" or
+			defName="VFES_Turret_ChargeRailgunTurret" or
 			defName="VFES_Turret_ChargeTurret" or
 			defName="VFES_Turret_AutocannonDouble" or
 			defName="VFES_Turret_EMPTurret" or
 			defName="VFES_Turret_Flame" or
 			defName="VFES_Turret_SentryGun" or
-			defName="VFES_Turret_ArmoredTurret" or
-			defName="VFES_Turret_ShotgunTurret" or
-			defName="VFES_Turret_Minigun" or
-			defName="VFES_Turret_Concealed" or
 			defName="VFES_Turret_MilitaryTurret"
 			]/comps/li[@Class="CompProperties_Refuelable"] </xpath>
 	</Operation>
@@ -21,16 +17,12 @@
 	<!-- Remove Explosive comp -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_ChargeRailgun" or
+			defName="VFES_Turret_ChargeRailgunTurret" or
 			defName="VFES_Turret_ChargeTurret" or
 			defName="VFES_Turret_AutocannonDouble" or
 			defName="VFES_Turret_EMPTurret" or
 			defName="VFES_Turret_Flame" or
 			defName="VFES_Turret_SentryGun" or
-			defName="VFES_Turret_ArmoredTurret" or
-			defName="VFES_Turret_ShotgunTurret" or
-			defName="VFES_Turret_Minigun" or
-			defName="VFES_Turret_Concealed" or
 			defName="VFES_Turret_MilitaryTurret"
 			]/comps/li[@Class="CompProperties_Explosive"] </xpath>
 	</Operation>
@@ -38,43 +30,29 @@
 	<!-- Replace vanilla thingClass -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_ChargeRailgun" or
+			defName="VFES_Turret_ChargeRailgunTurret" or
 			defName="VFES_Turret_ChargeTurret" or
 			defName="VFES_Turret_AutocannonDouble" or
 			defName="VFES_Turret_EMPTurret" or
 			defName="VFES_Turret_Flame" or
 			defName="VFES_Turret_SentryGun" or
-			defName="VFES_Turret_ArmoredTurret" or
-			defName="VFES_Turret_ShotgunTurret" or
-			defName="VFES_Turret_Minigun" or
-			defName="VFES_Turret_MilitaryTurret"
+			defName="VFES_Turret_MilitaryTurret" or
+			defName="VFES_Turret_FloorTurret"
 			]/thingClass </xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFES_Turret_Concealed"]/thingClass </xpath>
-		<value>
-			<thingClass>CombatExtended.Compatibility.VFES.Building_ConcealedTurretCE</thingClass>
-		</value>
-	</Operation>
 
 	<!-- Make turrets taller -->
-	<!-- The concealed turret is deliberately skipped here -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_ChargeRailgun" or
+			defName="VFES_Turret_ChargeRailgunTurret" or
 			defName="VFES_Turret_ChargeTurret" or
 			defName="VFES_Turret_AutocannonDouble" or
 			defName="VFES_Turret_EMPTurret" or
 			defName="VFES_Turret_Flame" or
 			defName="VFES_Turret_SentryGun" or
-			defName="VFES_Turret_ArmoredTurret" or
-			defName="VFES_Turret_ShotgunTurret" or
-			defName="VFES_Turret_Minigun" or
-			defName="VFES_Turret_Concealed" or
 			defName="VFES_Turret_MilitaryTurret"
 			]/fillPercent </xpath>
 		<value>
@@ -87,9 +65,7 @@
 			defName="VFES_Turret_Flame" or
 			defName="VFES_Turret_SentryGun" or
 			defName="VFES_Turret_MilitaryTurret" or
-			defName="VFES_Turret_ArmoredTurret" or
-			defName="VFES_Turret_ShotgunTurret" or
-			defName="VFES_Turret_Concealed" or
+			defName="VFES_Turret_FloorTurret" or
 			defName="VFES_Turret_Searchlight"
 			]/statBases </xpath>
 		<value>
@@ -99,10 +75,9 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_ChargeRailgun" or
+			defName="VFES_Turret_ChargeRailgunTurret" or
 			defName="VFES_Turret_ChargeTurret" or
 			defName="VFES_Turret_AutocannonDouble" or
-			defName="VFES_Turret_Minigun" or
 			defName="VFES_Turret_EMPTurret"
 			]/statBases </xpath>
 		<value>
@@ -112,7 +87,7 @@
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_ChargeRailgun" or
+			defName="VFES_Turret_ChargeRailgunTurret" or
 			defName="VFES_Turret_ChargeTurret" or
 			defName="VFES_Turret_EMPTurret"
 			]/statBases </xpath>
@@ -127,9 +102,7 @@
 			defName="VFES_Turret_Flame" or
 			defName="VFES_Turret_SentryGun" or
 			defName="VFES_Turret_MilitaryTurret" or
-			defName="VFES_Turret_ArmoredTurret" or
-			defName="VFES_Turret_ShotgunTurret" or
-			defName="VFES_Turret_Concealed"
+			defName="VFES_Turret_FloorTurret"
 			]/statBases/ShootingAccuracyTurret </xpath>
 		<value>
 			<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
@@ -139,8 +112,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
 			defName="VFES_Turret_ChargeTurret" or
-			defName="VFES_Turret_ChargeRailgun" or
-			defName="VFES_Turret_Minigun" or
+			defName="VFES_Turret_ChargeRailgunTurret" or
 			defName="VFES_Turret_AutocannonDouble"
 			]/statBases/ShootingAccuracyTurret </xpath>
 		<value>
@@ -150,17 +122,14 @@
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[
-			defName="VFES_Turret_ChargeRailgun" or
+			defName="VFES_Turret_ChargeRailgunTurret" or
 			defName="VFES_Turret_ChargeTurret" or
 			defName="VFES_Turret_AutocannonDouble" or
 			defName="VFES_Turret_EMPTurret" or
 			defName="VFES_Turret_Flame" or
 			defName="VFES_Turret_SentryGun" or
 			defName="VFES_Turret_MilitaryTurret" or
-			defName="VFES_Turret_ArmoredTurret" or
-			defName="VFES_Turret_ShotgunTurret" or
-			defName="VFES_Turret_Minigun" or
-			defName="VFES_Turret_Concealed"
+			defName="VFES_Turret_FloorTurret"
 			]/building/turretBurstCooldownTime </xpath>
 		<value>
 			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
@@ -169,27 +138,31 @@
 
 	<!-- Searchlight -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFES_Gun_Searchlight"]/verbs/li/range</xpath>
-		<value>
-			<range>68</range>
-		</value>
-	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="VFES_Turret_Searchlight"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Turret_Searchlight"]/specialDisplayRadius</xpath>
 		<value>
 			<specialDisplayRadius>68</specialDisplayRadius>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="VFES_Gun_Searchlight"]/modExtensions/li[@Class="VFESecurity.DazzleVerbProperties"]/illuminatedRadius</xpath>
+		<xpath>Defs/ThingDef[defName="VFES_Gun_Searchlight"]/verbs/li/range</xpath>
+		<value>
+			<range>68</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFES_Gun_Searchlight"]/modExtensions/li[@Class="VFESecurity.ExtendedVerbProperties"]/illuminatedRadius</xpath>
 		<value>
 			<illuminatedRadius>6</illuminatedRadius>
 		</value>
 	</Operation>
 
 	<!-- Flame Turret -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="VFES_Turret_Flame"]/costList/Chemfuel</xpath>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFES_Gun_FlameTurret</defName>
 		<statBases>
@@ -261,11 +234,22 @@
 			<noSingleShot>true</noSingleShot>
 		</FireModes>
 	</Operation>
-	
-	<!-- Armored Turret -->
-	<!-- Same stats as the military turret, as this turret's gimmick is its high HP -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFES_Gun_MilitaryTurret"]</xpath>
+		<value>
+			<li Class="CombatExtended.MultiBarrelExtension">
+				<offsets>
+					<li>(-0.25,2)</li>
+					<li>(0.25,2)</li>
+				</offsets>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Concealable Military Turret -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>VFES_Gun_ArmoredTurret</defName>
+		<defName>VFES_Gun_FloorTurret</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 			<SightsEfficiency>1</SightsEfficiency>
@@ -273,7 +257,7 @@
 			<SwayFactor>0.82</SwayFactor>
 		</statBases>
 		<Properties>
-			<recoilAmount>0.85</recoilAmount>
+			<recoilAmount>0.91</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
@@ -296,35 +280,6 @@
 			<noSnapshot>true</noSnapshot>
 			<noSingleShot>true</noSingleShot>
 		</FireModes>
-	</Operation>
-	
-	<!-- Shotgun Turret -->
-	<!-- Borrowed some stats from the Armory shotgun turret because, come on. Single shot, high damage shotgun turret. Couldn't have aligned more perfectly -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>VFES_Gun_ShotgunTurret</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.09</ShotSpread>
-			<SwayFactor>0.82</SwayFactor>
-		</statBases>
-		<Properties>
-			<recoilAmount>1.13</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
-			<warmupTime>0.6</warmupTime>
-			<range>16</range>
-			<soundCast>Shot_Shotgun_NoRack</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-			<recoilPattern>Mounted</recoilPattern>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>24</magazineSize>
-			<reloadTime>4.9</reloadTime>
-			<ammoSet>AmmoSet_12Gauge</ammoSet>
-		</AmmoUser>
 	</Operation>
 
 	<!-- Charge Turret -->
@@ -423,9 +378,9 @@
 		</value>
 	</Operation>
 
-	<!-- Minigun Turret -->
+	<!-- Sentry Gun -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>VFES_TurretMinigun_Top</defName>
+		<defName>VFES_Gun_SentryTurret</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 			<SightsEfficiency>1</SightsEfficiency>
@@ -436,7 +391,7 @@
 			<recoilAmount>0.3</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
 			<warmupTime>2.1</warmupTime>
 			<range>54</range>
 			<burstShotCount>25</burstShotCount>
@@ -449,7 +404,7 @@
 		<AmmoUser>
 			<magazineSize>250</magazineSize>
 			<reloadTime>9.2</reloadTime>
-			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -461,9 +416,9 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- Tesla Blaster -->
+	<!-- EMP Cannon -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_TeslaBlaster</defName>
+		<defName>VFES_Gun_EMPTurret</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
 			<SightsEfficiency>1</SightsEfficiency>
@@ -527,41 +482,6 @@
 		<weaponTags Inherit="False">
 			<li>TurretGun</li>
 		</weaponTags>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<noSnapshot>true</noSnapshot>
-			<noSingleShot>true</noSingleShot>
-		</FireModes>
-	</Operation>
-	
-	<!-- Concealed Turret -->
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>VFES_Gun_ConcealedTurret</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-			<SightsEfficiency>1</SightsEfficiency>
-			<ShotSpread>0.07</ShotSpread>
-			<SwayFactor>0.82</SwayFactor>
-		</statBases>
-		<Properties>
-			<recoilAmount>0.85</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-			<warmupTime>1.3</warmupTime>
-			<range>48</range>
-			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-			<burstShotCount>8</burstShotCount>
-			<soundCast>GunShotA</soundCast>
-			<soundCastTail>GunTail_Light</soundCastTail>
-			<muzzleFlashScale>9</muzzleFlashScale>
-			<recoilPattern>Mounted</recoilPattern>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>120</magazineSize>
-			<reloadTime>7.8</reloadTime>
-			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 			<noSnapshot>true</noSnapshot>
