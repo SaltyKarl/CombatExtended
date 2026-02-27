@@ -1,22 +1,17 @@
 ﻿using Verse;
 using VFESecurity;
-
+#nullable enable
 namespace CombatExtended.Compatibility.VFES
 {
     public class Building_ConcealedTurretCE : Building_TurretGunCE
     {
-        private CompConcealed concealedComp;
+        private CompConcealed? concealedComp;
 
         public override bool IsEverThreat
         {
             get
             {
-                CompConcealed comp = GetComp<CompConcealed>();
-                if (comp != null && comp.Submerged)
-                {
-                    return false;
-                }
-                return base.IsEverThreat;
+                return concealedComp?.Submerged ?? base.IsEverThreat;
             }
         }
 
@@ -24,7 +19,7 @@ namespace CombatExtended.Compatibility.VFES
         {
             get
             {
-                if (concealedComp != null && concealedComp.Submerged && concealedComp.Props.submergedGraphic != null)
+                if (concealedComp != null && concealedComp.Submerged && concealedComp?.Props.submergedGraphic != null)
                 {
                     return concealedComp.Props.submergedGraphic.Graphic;
                 }
@@ -39,3 +34,4 @@ namespace CombatExtended.Compatibility.VFES
         }
     }
 }
+#nullable restore

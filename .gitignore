@@ -1,6 +1,6 @@
-#Assemblies/CombatExtended.dll
-#AssembliesCompat/*.dll
-#AssembliesCore/*.dll
+Assemblies/CombatExtended.dll
+AssembliesCompat/*.dll
+AssembliesCore/*.dll
 *.suo
 *.cache
 */Thumbs.db
@@ -25,4 +25,5 @@ UnityEngine.dll
 
 .idea/
 __pycache__
-#ModPatches/*/Assemblies/
+ModPatches/*/Assemblies/
+.vs/
