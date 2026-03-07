@@ -7,6 +7,8 @@ namespace CombatExtended.Compatibility.VFES
     {
         private CompConcealed? concealedComp;
 
+        public override bool Active => (!(concealedComp?.Submerged ?? false) && base.Active);
+
         public override bool IsEverThreat
         {
             get
@@ -19,7 +21,7 @@ namespace CombatExtended.Compatibility.VFES
         {
             get
             {
-                if (concealedComp != null && concealedComp.Submerged && concealedComp?.Props.submergedGraphic != null)
+                if (concealedComp != null && concealedComp.Submerged && concealedComp.Props.submergedGraphic != null)
                 {
                     return concealedComp.Props.submergedGraphic.Graphic;
                 }
