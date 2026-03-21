@@ -22,7 +22,7 @@
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>HRPPA_Bullet_PsychicPulseRepeaterCE</defName>
-		<label>PsychicPulse</label>
+		<label>Psychic Pulse</label>
 		<graphicData>
 			<texPath>Things/Projectile/HRPPW_PsychicPulse_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -39,7 +39,7 @@
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>HRPPA_Bullet_PsychicPulseSpinnerCE</defName>
-		<label>PsychicPulse</label>
+		<label>Psychic Pulse</label>
 		<graphicData>
 			<texPath>Things/Projectile/HRPPW_PsychicPulse_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -56,7 +56,7 @@
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>HRPPA_Bullet_PsychicPulseShotgunCE</defName>
-		<label>PsychicPulse</label>
+		<label>Psychic Pulse</label>
 		<graphicData>
 			<texPath>Things/Projectile/HRPPW_PsychicPulse_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -75,7 +75,7 @@
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>HRPPA_Bullet_PsychicPulseReacherCE</defName>
-		<label>PsychicPulse</label>
+		<label>Psychic Pulse</label>
 		<graphicData>
 			<texPath>Things/Projectile/HRPPW_PsychicPulse_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -92,7 +92,7 @@
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>HRPPA_Bullet_PsychicPulseLancerCE</defName>
-		<label>PsychicPulse</label>
+		<label>Psychic Pulse</label>
 		<graphicData>
 			<texPath>Things/Projectile/HRPPW_PsychicPulse_LanceShot</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
