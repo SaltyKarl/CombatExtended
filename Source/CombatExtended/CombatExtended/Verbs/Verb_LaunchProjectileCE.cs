@@ -555,7 +555,7 @@ public class Verb_LaunchProjectileCE : Verb
 
             // Height difference calculations for ShotAngle
 
-            targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v);
+            report.targetHeight = targetHeight = GetTargetHeight(report.target, report.cover, report.roofed, v);
 
             if (!LockRotationAndAngle)
             {
