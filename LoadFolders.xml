@@ -668,6 +668,7 @@
 		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.SettlersModule">ModPatches/Vanilla Factions Expanded - Settlers</li>
 		<li IfModActive="OskarPotocki.VFE.Tribals">ModPatches/Vanilla Factions Expanded - Tribals</li>
 		<li IfModActive="VanillaExpanded.VFESecurity">ModPatches/Vanilla Furniture Expanded - Security</li>
+		<li IfModActive="VanillaExpanded.VFEFactory">ModPatches/Vanilla Furniture Expanded - Factory</li>
 		<li IfModActive="VanillaExpanded.VGeneticsE">ModPatches/Vanilla Genetics Expanded</li>
 		<li IfModActive="vanillaexpanded.gravship">ModPatches/Vanilla Gravship Expanded - Chapter 1</li>
 		<li IfModActive="VanillaExpanded.Ideo.Dryads">ModPatches/Vanilla Ideology Expanded - Dryads</li>
