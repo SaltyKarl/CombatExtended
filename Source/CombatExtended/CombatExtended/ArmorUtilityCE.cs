@@ -352,8 +352,11 @@ public static class ArmorUtilityCE
                         if (penAmount == 0 || armorAmount == 0)
                         {
                             // Skip error logging for utility stuff
-                            var apparelExt = armor.def.GetModExtension<ApparelDefExtension>();
-                            bool isUtilityApparel = apparelExt?.isBackpack == true || apparelExt?.isWebbing == true || (armor.def.apparel?.layers?.Count == 1 && armor.def.apparel.layers.First() == CE_ApparelLayerDefOf.StrappedHead);
+                            var layers = armor.def.apparel?.layers;
+                            bool isUtilityApparel = layers?.Count == 1 && 
+                                                    (layers[0] == CE_ApparelLayerDefOf.StrappedHead ||
+                                                     layers[0] == CE_ApparelLayerDefOf.Webbing ||
+                                                     layers[0] == CE_ApparelLayerDefOf.Backpack);
                             if (!isUtilityApparel && armor.GetStatValue(StatDefOf.ArmorRating_Sharp) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Blunt) == 0 && armor.GetStatValue(StatDefOf.ArmorRating_Heat) == 0)
                             {
                                 Log.ErrorOnce($"penAmount or armorAmount are zero for {def.armorCategory} on {armor}", armor.def.GetHashCode() + 846532021);
