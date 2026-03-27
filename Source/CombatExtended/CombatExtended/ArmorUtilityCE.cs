@@ -353,7 +353,7 @@ public static class ArmorUtilityCE
                         {
                             // Skip error logging for utility stuff
                             var layers = armor.def.apparel?.layers;
-                            bool isUtilityApparel = layers?.Count == 1 && 
+                            bool isUtilityApparel = layers?.Count == 1 &&
                                                     (layers[0] == CE_ApparelLayerDefOf.StrappedHead ||
                                                      layers[0] == CE_ApparelLayerDefOf.Webbing ||
                                                      layers[0] == CE_ApparelLayerDefOf.Backpack);
