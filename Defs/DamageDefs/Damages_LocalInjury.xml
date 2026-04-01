@@ -144,6 +144,7 @@
 		<defName>Neuralizer</defName>
 		<label>neuralizer</label>
 		<harmsHealth>false</harmsHealth>
+		<workerClass>DamageWorker_Stun</workerClass>
 		<additionalHediffs>
 			<li>
 				<hediff>Neuralizer</hediff>
