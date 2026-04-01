@@ -484,26 +484,14 @@
 		<maxSeverity>1</maxSeverity>
 		<isBad>false</isBad>
 		<comps>
-			<li Class="HediffCompProperties_Disappears">
-				<showRemainingTime>True</showRemainingTime>
-				<disappearsAfterTicks>
-					<min>7500</min>
-					<max>15000</max>
-				</disappearsAfterTicks>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2</severityPerDay>
 			</li>
 		</comps>
 		<stages>
 			<li>
 				<minSeverity>0.01</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<postFactor>0.9</postFactor>
-					</li>
-				</capMods>
-			</li>
-			<li>
-				<minSeverity>0.25</minSeverity>
+				<painFactor>1.1</painFactor>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
@@ -512,7 +500,8 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.5</minSeverity>
+				<minSeverity>0.25</minSeverity>
+				<painFactor>1.2</painFactor>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
@@ -521,20 +510,21 @@
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.75</minSeverity>
+				<minSeverity>0.5</minSeverity>
+				<painFactor>1.2</painFactor>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
-						<postFactor>0.4</postFactor>
+						<postFactor>0.55</postFactor>
 					</li>
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.95</minSeverity>
+				<minSeverity>0.85</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
-						<postFactor>0.1</postFactor>
+						<setMax>0.1</setMax>
 					</li>
 				</capMods>
 			</li>
