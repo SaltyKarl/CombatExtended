@@ -157,11 +157,10 @@
 	<DamageDef ParentName="Electrical">
 		<defName>Neuralizer_weak</defName>
 		<label>low power neuralizer</label>
-		<harmsHealth>false</harmsHealth>
 		<additionalHediffs>
 			<li>
 				<hediff>Neuralizer_weak</hediff>
-				<severityPerDamageDealt>0.1</severityPerDamageDealt>
+				<severityPerDamageDealt>0.05</severityPerDamageDealt>
 				<victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
 			</li>
 		</additionalHediffs>

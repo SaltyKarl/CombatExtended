@@ -491,36 +491,36 @@
 		<stages>
 			<li>
 				<minSeverity>0.01</minSeverity>
-				<painFactor>1.2</painFactor>
+				<painFactor>1.1</painFactor>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
-						<offset>-0.2</offset>
+						<postFactor>0.8</postFactor>
 					</li>
 				</capMods>
 			</li>
 			<li>
 				<minSeverity>0.25</minSeverity>
-				<painFactor>1.4</painFactor>
+				<painFactor>1.2</painFactor>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
-						<offset>-0.3</offset>
+						<postFactor>0.7</postFactor>
 					</li>
 				</capMods>
 			</li>
 			<li>
 				<minSeverity>0.5</minSeverity>
-				<painFactor>1.6</painFactor>
+				<painFactor>1.2</painFactor>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
-						<offset>-0.5</offset>
+						<postFactor>0.55</postFactor>
 					</li>
 				</capMods>
 			</li>
 			<li>
-				<minSeverity>0.75</minSeverity>
+				<minSeverity>0.85</minSeverity>
 				<capMods>
 					<li>
 						<capacity>Consciousness</capacity>
