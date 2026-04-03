@@ -449,6 +449,7 @@
 		<li IfModActive="Vanya.Polarisbloc.CoreLab,Vanya.Polarisbloc.CoreLab.tmp">ModPatches/Polarisbloc Core Lab</li>
 		<li IfModActive="Vanya.Polarisbloc.SecurityForce,Vanya.Polarisbloc.SecurityForce.tmp">ModPatches/Polarisbloc Security Force</li>
 		<li IfModActive="milk.poleepkwaupdate, GHOST.Poleepkwa">ModPatches/Poleepkwa Race</li>
+		<li IfModActive="ponpeco.KidsClothes">ModPatches/Ponpeco Kids Clothes</li>
 		<li IfModActive="BotchJob.PossessedWeapons">ModPatches/Possessed Weapons</li>
 		<li IfModActive="JangoDsoul.T45b.PowerArmor">ModPatches/PowerArmour T-45b</li>
 		<li IfModActive="pphhyy.DemigryphsMod">ModPatches/pphhyy Demigryph</li>
