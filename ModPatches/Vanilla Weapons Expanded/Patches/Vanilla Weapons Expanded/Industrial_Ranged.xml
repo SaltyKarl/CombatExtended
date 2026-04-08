@@ -783,6 +783,13 @@
 	</Operation>
 
 	<!-- === Flamethrower (RM2 Flamethrower from CE: Guns) === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VWE_Gun_Flamethrower"]/verbs/li/verbClass</xpath>
+		<value>
+			<verbClass>Verb_Shoot</verbClass>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VWE_Gun_Flamethrower</defName>
 		<statBases>
