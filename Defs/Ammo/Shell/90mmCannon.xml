@@ -164,7 +164,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base40x365mmBoforsBullet">
+	<ThingDef ParentName="Base90mmCannonShell">
 		<defName>Bullet_90mmCannonShell_AP</defName>
 		<label>90mm cannon shell (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -233,7 +233,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef ParentName="Base40x365mmBoforsBullet">
+	<ThingDef ParentName="Base90mmCannonShell">
 		<defName>Bullet_90mmCannonShell_APCR</defName>
 		<label>90mm cannon shell (APCR)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
