@@ -122,9 +122,9 @@ Arasaka Corporation	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
 Asimov  |
-Astrofuel gear  |
 Aspero Race |
 Astoriel Legacy |
+Astrofuel gear  |
 Astra Militarum Regimentum - Cadia  |
 Astra Militarum Regimentum - Krieg  |
 Astra Militarum Regimentum - Krieg: Officer Helmet  |
