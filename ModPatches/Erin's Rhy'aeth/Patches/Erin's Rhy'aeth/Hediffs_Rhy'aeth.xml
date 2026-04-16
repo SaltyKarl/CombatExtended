@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Maa'drhn Armor -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/GeneDef[defName="ERN_RhyaethBehaviour"]/statFactors</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/GeneDef[defName="ERN_RhyaethBehaviour"]/statOffsets</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+			<ArmorRating_Blunt>9</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>

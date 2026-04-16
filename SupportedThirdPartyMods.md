@@ -232,6 +232,7 @@ Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
+Erin's Rhy'aeth |
 Erin's Sephyr   |
 Erin's Shisune   |
 Erin's Valheim Creatures   |

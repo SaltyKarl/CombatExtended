@@ -32,10 +32,15 @@ public class ShiftVecReport
                     var cv = new CollisionVertical(cover);
                     var cy_min = Mathf.Max(bounds.min.y, cv.Max);
                     var cy_max = bounds.max.y;
+                    if (cy_max - cy_min < 0) // behind and shorter than cover
+                    {
+                        cy_max = cy_min;
+                    }
                     bounds = new Bounds(new Vector3(bounds.center.x, cy_min + cy_max / 2, bounds.center.z),
                                         new Vector3(bounds.size.x, (cy_max - cy_min), bounds.size.z));
                 }
 
+                var offset = bounds.size.y / 2;
                 float dist = shotDist;
 
                 // calculate uncertainty in xz position
@@ -43,7 +48,8 @@ public class ShiftVecReport
                                       + circularMissRadius * circularMissRadius
                                       + indirectFireShift * indirectFireShift
                                       + leadShift * leadShift);
-                float prob = CE_Math.CalculateHitPercent(dist, bounds, targetHeight, shotSpeed, shotAngle, swayDegrees, spreadDegrees, VS, CE_Utility.GravityConst);
+
+                float prob = CE_Math.CalculateHitPercent(dist, bounds, offset, shotSpeed, shotAngle, swayDegrees, spreadDegrees, VS, CE_Utility.GravityConst);
 
                 hitChance = GenText.ToStringByStyle(prob * 100, ToStringStyle.FloatTwo);
             }
@@ -81,16 +87,16 @@ public class ShiftVecReport
     public float lightingShift = 0f;
     public float weatherShift = 0f;
 
-    private float enviromentShiftInt = -1;
-    public float enviromentShift
+    private float environmentShiftInt = -1;
+    public float environmentShift
     {
         get
         {
-            if (enviromentShiftInt < 0)
+            if (environmentShiftInt < 0)
             {
-                enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 7f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
+                environmentShiftInt = ((blindFiring ? 1 : lightingShift) * 7f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
             }
-            return enviromentShiftInt;
+            return environmentShiftInt;
         }
     }
 
@@ -107,7 +113,7 @@ public class ShiftVecReport
                 {
                     se = 0.02f;
                 }
-                visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
+                visibilityShiftInt = environmentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
             }
             return visibilityShiftInt;
         }
@@ -248,7 +254,7 @@ public class ShiftVecReport
         {
             stringBuilder.AppendLine("   " + $"DEBUG: visibilityShift\t\t{visibilityShift} ");
             stringBuilder.AppendLine("   " + $"DEBUG: leadDist\t\t{leadDist} ");
-            stringBuilder.AppendLine("   " + $"DEBUG: enviromentShift\t{enviromentShift}");
+            stringBuilder.AppendLine("   " + $"DEBUG: environmentShift\t{environmentShift}");
             stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t{accuracyFactor}");
             stringBuilder.AppendLine("   " + $"DEBUG: circularMissRadius\t{circularMissRadius}");
             stringBuilder.AppendLine("   " + $"DEBUG: sightsEfficiency\t{sightsEfficiency}");

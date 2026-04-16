@@ -38,7 +38,7 @@ public static class CE_Math
         }
 
         // See article above for explanation of this section.
-        if (p < 0.5)
+        if (p <= 0.5)
         {
             // F^-1(p) = - G^-1(p)
             return -RationalApproximation(Math.Sqrt(-2.0 * Math.Log(p)));
@@ -109,11 +109,10 @@ public static class CE_Math
 
         float cos_theta = Mathf.Cos(shotAngle);
 
-        float sigma_gravity = (gravity * sigma_dist * sigma_dist) / (2 * shotSpeed * shotSpeed * cos_theta * cos_theta);
-        float sigma_vertical = Mathf.Sqrt(sigma_theta * sigma_theta + sigma_gravity);
+        float sigma_gravity = (gravity * dist * sigma_dist) / (2 * shotSpeed * shotSpeed * cos_theta * cos_theta);
+        float sigma_vertical = Mathf.Sqrt(sigma_y * sigma_y + sigma_gravity * sigma_gravity);
 
         float half_w = w / 2;
-        float half_h = h / 2;
         float p_horizontal = 1.0f;
 
         if (sigma_horizontal > 0)
@@ -126,10 +125,10 @@ public static class CE_Math
         {
             // Becaue we might not be shooting at center of visible area, we have to calculate odds of missing high and the odds of missing low.
             // The chance of hitting is the probability of the bullet passing between the upper and lower limit.
-            float upper = (offset + half_h) / sigma_vertical;
-            float lower = (offset - half_h) / sigma_vertical;
+            float higher = (h - offset) / sigma_vertical;
+            float lower = (-offset) / sigma_vertical;
 
-            p_vertical = normal_cdf(upper) - normal_cdf(lower);
+            p_vertical = normal_cdf(higher) - normal_cdf(lower);
         }
         return p_horizontal * p_vertical;
     }

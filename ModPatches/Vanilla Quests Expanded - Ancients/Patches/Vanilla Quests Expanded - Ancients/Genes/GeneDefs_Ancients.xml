@@ -132,7 +132,7 @@
 		</value>
 	</Operation>
 
-	<!-- ========== electromagnetized ========== -->
+	<!-- ========== Electromagnetized ========== -->
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/GeneDef[defName="VQEA_Electromagnetized"]</xpath>
@@ -152,4 +152,5 @@
 			<range>23.9</range>
 		</value>
 	</Operation>
+
 </Patch>
