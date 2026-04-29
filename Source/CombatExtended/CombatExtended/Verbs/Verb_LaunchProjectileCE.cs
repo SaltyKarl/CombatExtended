@@ -1470,6 +1470,11 @@ public class Verb_LaunchProjectileCE : Verb
 
             Predicate<IntVec3> CanShootThroughCell = (IntVec3 cell) =>
             {
+                float ch = LightingTracker.HighestCoverAt(cell);
+                if (ch < shotSource.y)
+                {
+                    return true;
+                }
                 Thing cover = cell.GetFirstPawn(caster.Map) ?? cell.GetCover(caster.Map);
 
                 if (cover != null && cover != ShooterPawn && cover != caster && cover != targetThing && !cover.IsPlant() && !(cover is Pawn && cover.HostileTo(caster)))

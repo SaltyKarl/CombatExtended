@@ -696,6 +696,7 @@
 		<li IfModActive="vanillaracesexpanded.insector">ModPatches/Vanilla Races Expanded - Insector</li>
 		<li IfModActive="vanillaracesexpanded.lycanthrope">ModPatches/Vanilla Races Expanded - Lycanthrope</li>
 		<li IfModActive="vanillaracesexpanded.phytokin">ModPatches/Vanilla Races Expanded - Phytokin</li>
+		<li IfModActive="vanillaracesexpanded.pigskin">ModPatches/Vanilla Races Expanded - Pigskin</li>
 		<li IfModActive="vanillaracesexpanded.sanguophage">ModPatches/Vanilla Races Expanded - Sanguophage</li>
 		<li IfModActive="vanillaracesexpanded.saurid">ModPatches/Vanilla Races Expanded - Saurid</li>
 		<li IfModActive="vanillaracesexpanded.waster">ModPatches/Vanilla Races Expanded - Waster</li>

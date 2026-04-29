@@ -2,7 +2,6 @@
 <Patch>
 
 	<!-- Maa'drhn -->
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="ERN_Maadrhn"]</xpath>
 		<value>
@@ -15,8 +14,6 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="ERN_Maadrhn"]/statBases</xpath>
 		<value>
-			<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
-			<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
 			<MeleeDodgeChance>0.21</MeleeDodgeChance>
 			<MeleeCritChance>0.01</MeleeCritChance>
 			<MeleeParryChance>0.02</MeleeParryChance>

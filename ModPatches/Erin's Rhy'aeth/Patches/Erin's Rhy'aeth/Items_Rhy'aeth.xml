@@ -2,7 +2,6 @@
 <Patch>
 
 	<!-- Maa'drhn Leather -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="ERN_MaadrhnLeather"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>

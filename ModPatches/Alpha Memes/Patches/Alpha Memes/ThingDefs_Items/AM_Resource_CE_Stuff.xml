@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="AA_MeatMealBase"]/statBases</xpath>
-		<value>
-			<Bulk>1</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="AA_CactipineQuill"]/statBases</xpath>
-		<value>
-			<Bulk>0.1</Bulk>
-		</value>
-	</Operation>
-
 	<!-- ======== Red Wood ======== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="GU_RedWood"]/tools</xpath>
