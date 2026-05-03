@@ -390,6 +390,7 @@
 			<armorPenetrationSharp>0</armorPenetrationSharp>
 			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<explosionRadius>6.5</explosionRadius>
+			<soundExplode>Explosion_EMP</soundExplode>
 		</projectile>
 	</ThingDef>
 
