@@ -58,7 +58,9 @@ public class GizmoAmmoStatus : Gizmo_Slider
             }
             else
             {
-                return compAmmo.MagsLeftSameType + " (" + compAmmo.MagsLeft + ")";
+                int sameTypeMags = compAmmo.MagsLeftSameType;
+                int otherTypesMags = compAmmo.MagsLeft - sameTypeMags;
+                return sameTypeMags + (otherTypesMags > 0 ? " (+" + otherTypesMags + ")" : string.Empty);
             }
         }
     }
