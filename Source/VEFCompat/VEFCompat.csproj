@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
-		<AssemblyName>VFESCompatibilty</AssemblyName>
+		<AssemblyName>VEFCompat</AssemblyName>
 		<AssemblyVersion>15.6.3.1</AssemblyVersion>
 		<FileVersion>15.6.3.1</FileVersion>
 		<Version>15.6.3.1</Version>
@@ -10,10 +10,9 @@
 		<Authors />
 		<Copyright>CC BY-NC-SA 4.0 2025</Copyright>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<RootNamespace>CombatExtended.Compatibility.VFES</RootNamespace>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<OutputPath>..\..\ModPatches\Vanilla Furniture Expanded - Security\Assemblies\</OutputPath>
+		<OutputPath>..\..\ModPatches\Vanilla Expanded Framework\Assemblies\</OutputPath>
 		<DebugType>embedded</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -21,7 +20,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<OutputPath>..\..\ModPatches\Vanilla Furniture Expanded - Security\Assemblies\</OutputPath>
+		<OutputPath>..\..\ModPatches\Vanilla Expanded Framework\Assemblies\</OutputPath>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
@@ -32,19 +31,28 @@
 		<Exec Command="if $(ConfigurationName) == Debugger call &quot;C:\Program Files (x86)\Mono\bin\pdb2mdb.bat&quot; $(TargetDir)$(TargetName)$(TargetExt)" />
 	</Target>
 	<ItemGroup>
-		<ProjectReference Include="..\CombatExtended\CombatExtended.csproj">
-			<Private>False</Private>
-		</ProjectReference>
+		<Folder Include="VEFCompat" />
 	</ItemGroup>
 	<ItemGroup>
-		<Reference Include="VFESecurity">
-		  <HintPath>..\packages\VFESecurity-reference.dll</HintPath>
-		  <Private>False</Private>
-		</Reference>
+	  <ProjectReference Include="..\CombatExtended\CombatExtended.csproj">
+	    <Private>False</Private>
+	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4633" GeneratePathProperty="true" />
-		<PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
+	  <Reference Include="VEF">
+	    <HintPath>..\packages\VEF-reference.dll</HintPath>
+	    <Private>False</Private>
+	  </Reference>
 	</ItemGroup>
-	
+	<ItemGroup>
+          <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          </PackageReference>
+          <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4543" GeneratePathProperty="true" />
+          <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
+	</ItemGroup>
+	<ItemGroup>
+		<Publicize Include="Assembly-CSharp" />
+	</ItemGroup>
 </Project>
