@@ -145,6 +145,8 @@ Big and Small - Medieval Overhaul Factions	|
 Big and Small - Races	|
 Big and Small - Vampires and the Undead  |
 Big and Small - Weapons	|
+Bioferrite Chainsaw |
+Biological Warfare  |
 Biomes! Caverns	|
 Biomes! Core	|
 Biomes! Polluted Lands  |

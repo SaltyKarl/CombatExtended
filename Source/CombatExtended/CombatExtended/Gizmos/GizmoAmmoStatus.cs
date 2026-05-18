@@ -58,8 +58,8 @@ public class GizmoAmmoStatus : Gizmo_Slider
             }
             else
             {
-                int sameTypeMags = compAmmo.MagsLeftSameType;
-                int otherTypesMags = compAmmo.MagsLeft - sameTypeMags;
+                int sameTypeMags = compAmmo.MagsLeftSameTypeReadOnly;
+                int otherTypesMags = compAmmo.MagsLeftReadOnly - sameTypeMags;
                 return sameTypeMags + (otherTypesMags > 0 ? " (+" + otherTypesMags + ")" : string.Empty);
             }
         }
