@@ -15,7 +15,7 @@
 		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_UraniumSlug"]</xpath>
 		<value>
 			<comps>
-				<li Class="CombatExtended.CompProperties_AmmoUser">
+				<li Class="CombatExtended.CompProperties_AmmoListUser">
 					<magazineSize>180</magazineSize>
 					<reloadTime>7.8</reloadTime>
 					<ammoSet>AmmoSet_40x311mmR</ammoSet>
@@ -50,7 +50,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Autocannon"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
+			<li Class="CombatExtended.CompProperties_AmmoListUser">
 				<magazineSize>600</magazineSize>
 				<reloadTime>7.8</reloadTime>
 				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
@@ -85,7 +85,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="VFED_AmmoBox_Missile"]/comps</xpath>
 		<value>
-			<li Class="CombatExtended.CompProperties_AmmoUser">
+			<li Class="CombatExtended.CompProperties_AmmoListUser">
 				<magazineSize>72</magazineSize>
 				<reloadTime>7.8</reloadTime>
 				<ammoSet>AmmoSet_50mmRocket</ammoSet>
