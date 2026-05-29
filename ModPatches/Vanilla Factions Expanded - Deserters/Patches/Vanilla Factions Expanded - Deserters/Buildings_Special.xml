@@ -19,6 +19,32 @@
 					<magazineSize>180</magazineSize>
 					<reloadTime>7.8</reloadTime>
 					<ammoSet>AmmoSet_40x311mmR</ammoSet>
+					<ammoSpawnOptions>
+						<li>
+							<ammoDef>Ammo_40x311mmR_AP</ammoDef>
+							<percentRange>0.75~1</percentRange>
+							<weight>1</weight>
+						</li>
+						<li>
+							<ammoDef>Ammo_40x311mmR_Incendiary</ammoDef>
+							<percentRange>0.75~1</percentRange>
+							<weight>0.65</weight>
+						</li>
+						<li>
+							<ammoDef>Ammo_40x311mmR_HE</ammoDef>
+							<percentRange>0.75~1</percentRange>
+							<weight>0.65</weight>
+						</li>
+						<li>
+							<ammoDef>Ammo_40x311mmR_Sabot</ammoDef>
+							<percentRange>0.75~1</percentRange>
+							<weight>0.65</weight>
+						</li>
+					</ammoSpawnOptions>
+				</li>
+				<li Class="CompProperties_Power">
+					<compClass>CompPowerTrader</compClass>
+					<basePowerConsumption>50</basePowerConsumption>
 				</li>
 				<li Class="CompProperties_Power">
 					<compClass>CompPowerTrader</compClass>
@@ -61,6 +87,32 @@
 				<magazineSize>600</magazineSize>
 				<reloadTime>7.8</reloadTime>
 				<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+				<ammoSpawnOptions>
+						<li>
+							<ammoDef>Ammo_20x102mmNATO_AP</ammoDef>
+							<percentRange>0.75~1</percentRange>
+							<weight>1</weight>
+						</li>
+						<li>
+							<ammoDef>Ammo_20x102mmNATO_HE</ammoDef>
+							<percentRange>0.75~1</percentRange>
+							<weight>0.65</weight>
+						</li>
+						<li>
+							<ammoDef>Ammo_20x102mmNATO_Incendiary</ammoDef>
+							<percentRange>0.75~1</percentRange>
+							<weight>0.65</weight>
+						</li>
+						<li>
+							<ammoDef>Ammo_20x102mmNATO_Sabot</ammoDef>
+							<percentRange>0.75~1</percentRange>
+							<weight>0.65</weight>
+						</li>
+				</ammoSpawnOptions>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>50</basePowerConsumption>
 			</li>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -103,6 +155,16 @@
 				<magazineSize>72</magazineSize>
 				<reloadTime>7.8</reloadTime>
 				<ammoSet>AmmoSet_50mmRocket</ammoSet>
+				<ammoSpawnOptions>
+					<li>
+						<ammoDef>Ammo_50mmRocket_HE</ammoDef>
+						<percentRange>0.75~1</percentRange>
+					</li>
+				</ammoSpawnOptions>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>50</basePowerConsumption>
 			</li>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
