@@ -31,38 +31,38 @@
 		<Exec Command="if $(ConfigurationName) == Debugger call &quot;C:\Program Files (x86)\Mono\bin\pdb2mdb.bat&quot; $(TargetDir)$(TargetName)$(TargetExt)" />
 	</Target>
 	<ItemGroup>
-	  <ProjectReference Include="..\CombatExtended\CombatExtended.csproj">
-	    <Private>False</Private>
-	  </ProjectReference>
+		<ProjectReference Include="..\CombatExtended\CombatExtended.csproj">
+			<Private>False</Private>
+		</ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <Reference Include="SOS2">
-	    <HintPath>..\packages\ShipsHaveInsides-reference.dll</HintPath>
-	    <Private>False</Private>
-	  </Reference>
-    <Reference Include="Vehicles">
-	    <HintPath>..\packages\Vehicles-reference.dll</HintPath>
-	    <Private>False</Private>
-	  </Reference>
+		<Reference Include="SOS2">
+			<HintPath>..\packages\ShipsHaveInsides-reference.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Vehicles">
+			<HintPath>..\packages\Vehicles-reference.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 	</ItemGroup>
-    
+
 	<!-- SoS2 itself uses Publicizer, so remove the duplicate type. -->
 	<Target Name="RemoveIgnoresAccessChecksToAttributeCs" AfterTargets="PublicizeAssemblies">
 		<ItemGroup>
 			<FilesToRemove Include="@(Compile)" Condition="'%(Filename)' == 'IgnoresAccessChecksToAttribute'" />
-        </ItemGroup>
+		</ItemGroup>
 		<ItemGroup>
-			 <Compile Remove="@(FilesToRemove)" />
+			<Compile Remove="@(FilesToRemove)" />
 		</ItemGroup>
 	</Target>
 
 	<ItemGroup>
-          <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
-			  <PrivateAssets>all</PrivateAssets>
-			  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-          </PackageReference>
-          <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4850" GeneratePathProperty="true" />
-          <PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
+		<PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4850" GeneratePathProperty="true" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.6" ExcludeAssets="runtime" />
 	</ItemGroup>
 	<ItemGroup>
 		<Publicize Include="Assembly-CSharp" />
