@@ -32,8 +32,6 @@ public class StatPart_NaturalArmorDurability : StatPart
             var comp = (req.Thing?.TryGetComp<CompArmorDurability>() ?? null);
             if (comp != null)
             {
-                var mech = (Pawn)req.Thing;
-
                 float minArmor = getMinArmor(comp, val);
 
                 val -= (val - minArmor) * (1 - comp.curDurabilityPercent);
@@ -48,8 +46,6 @@ public class StatPart_NaturalArmorDurability : StatPart
         var comp = (req.Thing?.TryGetComp<CompArmorDurability>() ?? null);
         if (comp != null)
         {
-            var mech = (Pawn)req.Thing;
-
             string minArmorExp = getMinArmorExplicit(comp) >= 0 ? "Minimal armor value: " + getMinArmorExplicit(comp).ToString() : "Minimal armor percentage: " + comp.durabilityProps.MinArmorPct.ToStringPercent();
 
             return "Armor durability: " + comp.curDurabilityPercent.ToStringPercent() + "\n" + comp.curDurability.ToString() + "/" + comp.maxDurability.ToString() + "\n" + minArmorExp;
