@@ -73,6 +73,20 @@ public class CompTend : ICompTactics
             lastTendJobCheckedAt = GenTicks.TicksGame - COOLDOWN_TEND_JOB_CHECK / 2;
             return SuppressionUtility.GetRunForCoverJob(SelPawn);
         }
+        // 如果 SelPawn 已被其他 pawn 预约（如正在被 TendPatient），不要分配 TendSelf
+        // 否则会导致 TryMakePreToilReservations 中的预约冲突红字
+        var reservations = SelPawn.Map?.reservationManager?.ReservationsReadOnly;
+        if (reservations != null)
+        {
+            for (int i = 0; i < reservations.Count; i++)
+            {
+                if (reservations[i].Target == SelPawn && reservations[i].Claimant != SelPawn)
+                {
+                    lastTendJobCheckedAt = GenTicks.TicksGame;
+                    return null;
+                }
+            }
+        }
         lastTendJobAt = GenTicks.TicksGame;
         Job job = JobMaker.MakeJob(CE_JobDefOf.TendSelf, SelPawn);
         job.endAfterTendedOnce = false;
