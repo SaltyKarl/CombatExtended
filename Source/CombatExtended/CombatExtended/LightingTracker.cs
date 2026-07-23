@@ -267,7 +267,7 @@ public class LightingTracker : MapComponent
             else
             {
                 Bounds bounds = CE_Utility.GetBoundsFor(cover);
-                coverHeight = bounds.size.y;
+                coverHeight = bounds.max.y;
             }
             coverGridCache[CellToIndex(position)] = coverHeight;
         }
