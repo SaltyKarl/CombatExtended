@@ -5,7 +5,7 @@ using Verse;
 using VEF.Apparels;
 namespace CombatExtended.Compatibility;
 
-public class VanillaExpandedFramework : IPatch
+ class VanillaExpandedFramework : IPatch
 {
     const string ModName = "Vanilla Expanded Framework";
     bool IPatch.CanInstall()
@@ -13,10 +13,10 @@ public class VanillaExpandedFramework : IPatch
         return ModLister.HasActiveModWithName(ModName);
     }
 
-    void IPatch.Install()
+    public void Install()
     {
-        BlockerRegistry.RegisterCheckForCollisionBetweenCallback(CheckInterceptBetween);
-        BlockerRegistry.RegisterShieldZonesCallback(ShieldZonesCallback);
+        BlockerRegistry.RegisterCheckForCollisionBetweenCallback(VanillaExpandedFramework.CheckInterceptBetween);
+        BlockerRegistry.RegisterShieldZonesCallback(VanillaExpandedFramework.ShieldZonesCallback);
     }
 
     // Copy of how CE handles vanilla shields
@@ -25,7 +25,7 @@ public class VanillaExpandedFramework : IPatch
         return CheckIntercept(projectile);
     }
 
-    private IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
+    private static IEnumerable<IEnumerable<IntVec3>> ShieldZonesCallback(Thing pawnToSuppress)
     {
         IEnumerable<CompShieldField> interceptors = CompShieldField.ListerShieldGensActiveIn(pawnToSuppress.Map).ToList();
         if (!interceptors.Any())
