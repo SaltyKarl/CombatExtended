@@ -48,7 +48,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="PE_PracticeShortBow"]</xpath>
+		<xpath>Defs/ThingDef[defName="PE_PracticeShortBow"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
