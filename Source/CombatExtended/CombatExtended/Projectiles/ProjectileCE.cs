@@ -1199,9 +1199,10 @@ public abstract class ProjectileCE : ThingWithComps
 
         if (dist * dist > (ExactPosition - LastPos).sqrMagnitude)
         {
-            return false;
+            return true;
         }
         return true;
+    
     }
     /// <summary>
     /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection.

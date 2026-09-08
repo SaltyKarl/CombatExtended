@@ -1135,6 +1135,13 @@ public class Verb_LaunchProjectileCE : Verb
             aperatureSize = 0.03f;
         }
 
+        
+        // Match the LoS check: raise the muzzle so we don't clip cover up close.
+        // Deterministic, so computed once per shot rather than once per pellet.
+        float shotHeight = ShotHeight;
+        float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
+
+
         ShiftVecReport report = ShiftVecReportFor(currentTarget, targetLoc.ToIntVec3());
         bool pelletMechanicsOnly = false;
         for (int i = 0; i < projectilePropsCE.pelletCount; i++)
@@ -1180,8 +1187,6 @@ public class Verb_LaunchProjectileCE : Verb
 
             if (instant)
             {
-                var shotHeight = ShotHeight;
-                float tsa = AdjustShotHeight(caster, currentTarget, ref shotHeight);
                 projectile.RayCast(
                     Shooter,
                     verbProps,
@@ -1200,7 +1205,7 @@ public class Verb_LaunchProjectileCE : Verb
                 projectile.Launch(
                     Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
                     sourceLoc,
-                    shotAngle,
+                    shotAngle + tsa,
                     shotRotation,
                     ShotHeight,
                     ShotSpeed,
