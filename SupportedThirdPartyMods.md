@@ -207,6 +207,7 @@ Dinosauria |
 Diverse Mechanoid War Procedure |
 Divine Order |
 DOOM - Faction (Continued) |
+Dlc collaboration - Void universe |
 DMWands |
 Dragons Descent    |
 Dragons!	|
@@ -377,6 +378,7 @@ Mechanoid Bench 2   |
 Mechanoid Bench 3   |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
+Mechanoid Repurposing   |
 Medical Supplements |
 Medical System Expansion	|
 Medieval Bowyer   |
@@ -570,6 +572,7 @@ SCP - Clothing Only	|
 Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
 Seventh Seraph  |
+Shambler Variants  |
 Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
