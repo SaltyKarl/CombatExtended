@@ -979,10 +979,32 @@ public abstract class ProjectileCE : ThingWithComps
 
         // Iterate through all cells between the last and the new position
         // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
-        var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
+        // We build this list BY HAND: a loop, a Contains() check to skip duplicates, then a
+        // Sort(). Why not just use LINQ's Union/Distinct/OrderBy? Because every LINQ call builds
+        // a brand-new throwaway list (fresh objects the garbage collector has to clean up), and
+        // this runs many times every tick. On our one and only core that trash piles up fast, so
+        // instead we clear and refill ONE reusable list.
+        collisionCells.Clear();
+        foreach (var lineCell in GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3))
+        {
+            if (!collisionCells.Contains(lineCell))
+            {
+                collisionCells.Add(lineCell);
+            }
+        }
+        if (!collisionCells.Contains(lastPosIV3))
+        {
+            collisionCells.Add(lastPosIV3);
+        }
+        if (!collisionCells.Contains(newPosIV3))
+        {
+            collisionCells.Add(newPosIV3);
+        }
+        collisionCellSortOrigin = LastPos;
+        collisionCells.Sort(CompareCollisionCellDistance);
 
         //Order cells by distance from the last position
-        foreach (var cell in cells)
+        foreach (var cell in collisionCells)
         {
             if (CheckCellForCollision(cell))
             {
@@ -994,6 +1016,23 @@ public abstract class ProjectileCE : ThingWithComps
             if (Controller.settings.DebugDrawInterceptChecks)
             {
                 Map.debugDrawer.FlashCell(cell, 1, "o");
+            }
+        }
+
+        // The intended target gets ONE clean test per tick against its real DrawPos bounds,
+        // instead of hoping its thingGrid entry (which parks at the OLD tile until the move's
+        // done) happens to sit on a cell we walk through. Static / cell-only => null, so this
+        // just no-ops for them. Ugh, the usual grid lag.
+        if (!collided
+            && intendedTargetThing is Pawn intendedPawn
+            && intendedPawn != launcher
+            && intendedPawn != mount
+            && TryCollideWith(intendedPawn))
+        {
+            collided = true;
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                Log.Message($"[CE-Debug] DrawPos-sample HIT on intended target {intendedPawn.LabelShort} @ {intendedPawn.DrawPos.ToString("F2")} (thingGrid was @{intendedPawn.Position})");
             }
         }
 
@@ -1012,6 +1051,28 @@ public abstract class ProjectileCE : ThingWithComps
     /// Cache field holding things that a projectile might collide with.
     /// </summary>
     private static readonly List<Thing> potentialCollisionCandidates = new List<Thing>();
+
+    /// <summary>
+    /// Pooled cell lists for the per-tick collision scans. We reuse them instead of handing the
+    /// GC a fresh LINQ buffet every single tick like some kind of monster. Two lists because the
+    /// nested blocker scan runs INSIDE the outer one and would happily stomp its own enumerator.
+    /// </summary>
+    private static readonly List<IntVec3> collisionCells = new List<IntVec3>();
+    private static readonly List<IntVec3> blockerCheckCells = new List<IntVec3>();
+    private static Vector3 collisionCellSortOrigin;
+    private static Vector3 blockerCheckSortOrigin;
+
+    private static int CompareCollisionCellDistance(IntVec3 a, IntVec3 b)
+    {
+        return (a.ToVector3Shifted() - collisionCellSortOrigin).MagnitudeHorizontalSquared()
+            .CompareTo((b.ToVector3Shifted() - collisionCellSortOrigin).MagnitudeHorizontalSquared());
+    }
+
+    private static int CompareBlockerCellDistance(IntVec3 a, IntVec3 b)
+    {
+        return (a.ToVector3Shifted() - blockerCheckSortOrigin).MagnitudeHorizontalSquared()
+            .CompareTo((b.ToVector3Shifted() - blockerCheckSortOrigin).MagnitudeHorizontalSquared());
+    }
 
     /// <summary>
     /// Checks whether a collision occurs along flight path within this cell.
@@ -1114,9 +1175,27 @@ public abstract class ProjectileCE : ThingWithComps
                 var lastPosIV3 = LastPos.ToIntVec3();
                 var newPosIV3 = thing.TrueCenter().ToIntVec3();
                 // Iterate through all cells between the last and the THING
-                // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
-                var cells = GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3).Union(new[] { lastPosIV3, newPosIV3 }).Distinct().OrderBy(x => (x.ToVector3Shifted() - LastPos).MagnitudeHorizontalSquared());
-                foreach (var _cell in cells)
+                // Also pooled, separate list, because we're already nested inside the outer scan.
+                blockerCheckCells.Clear();
+                foreach (var lineCell in GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3))
+                {
+                    if (!blockerCheckCells.Contains(lineCell))
+                    {
+                        blockerCheckCells.Add(lineCell);
+                    }
+                }
+                if (!blockerCheckCells.Contains(lastPosIV3))
+                {
+                    blockerCheckCells.Add(lastPosIV3);
+                }
+                if (!blockerCheckCells.Contains(newPosIV3))
+                {
+                    blockerCheckCells.Add(newPosIV3);
+                }
+                blockerCheckSortOrigin = LastPos;
+                blockerCheckCells.Sort(CompareBlockerCellDistance);
+
+                foreach (var _cell in blockerCheckCells)
                 {
                     bool colided = false;
                     colided = BlockerRegistry.CheckCellForCollisionCallback(this, _cell, launcher);
