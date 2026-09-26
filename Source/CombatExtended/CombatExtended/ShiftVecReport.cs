@@ -120,6 +120,7 @@ public class ShiftVecReport
     }
 
     // Leading variables
+    public Vector2 shotSource = new Vector2(0, 0); // where the round left the muzzle/eye (xz). We need it to do the flight-time math without losing our minds
     public float shotSpeed = 0f;
     private bool targetIsMoving
     {
@@ -190,6 +191,7 @@ public class ShiftVecReport
         circularMissRadius = report.circularMissRadius;
         indirectFireShift = report.indirectFireShift;
         lightingShift = report.lightingShift;
+        shotSource = report.shotSource;
         shotSpeed = report.shotSpeed;
         shotDist = report.shotDist;
         maxRange = report.maxRange;
@@ -220,16 +222,82 @@ public class ShiftVecReport
 
     public Vector2 GetRandLeadVec()
     {
-        if (blindFiring)
+        if (blindFiring || !targetIsMoving || targetPawn.pather == null)
         {
             return new Vector2(0, 0);
         }
-        Vector3 moveVec = new Vector3();
-        if (targetIsMoving)
+
+        // Iterate the flight-time: a moving target won't be where we THINK it'll be, so we loop
+        // twice and call it converged DrawPos is the pawn's real tweened spot
+        // and already knows how far into the step it is, so no poking at pather
+        // just the public nextCell. This is the bit that used to calmly aim at the next tile
+        // center; now we extrapolate from where the poor sod is.
+        float t = shotSpeed > 0f ? shotDist / shotSpeed : 0f;
+        Vector3 predicted = PredictPawnPos(t);
+        for (int i = 0; i < 2 && shotSpeed > 0f; i++)
         {
-            moveVec = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3() * (leadDist + Rand.Range(-leadShift, leadShift));
+            predicted = PredictPawnPos(t);
+            t = (new Vector2(predicted.x, predicted.z) - shotSource).magnitude / shotSpeed;
         }
+
+        Vector3 cur = targetPawn.DrawPos;
+        Vector3 delta = predicted - cur;
+        delta.y = 0f;
+
+        Vector3 dir = delta;
+        if (dir.sqrMagnitude < 1e-6f)
+        {
+            dir = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3();
+            dir.y = 0f;
+        }
+        if (dir.sqrMagnitude < 1e-6f)
+        {
+            return new Vector2(0, 0);
+        }
+
+        // Pile the random accuracy-driven lead error on top of the systematic guess, otherwise
+        // decent shooters would just auto-lock onto moving targets
+        float mag = delta.magnitude + Rand.Range(-leadShift, leadShift);
+        Vector3 moveVec = dir.normalized * mag;
+
+        if (Controller.settings.DebugDrawInterceptChecks)
+        {
+            float remainingInStep = (targetPawn.pather.nextCell.ToVector3Shifted() - targetPawn.DrawPos).magnitude;
+            Log.Message($"[CE-Debug] lead: t={t:F3}s predicted=({predicted.x:F2},{predicted.z:F2}) cur=({cur.x:F2},{cur.z:F2}) mag={mag:F2} remainingInStep={remainingInStep:F2} leadShift={leadShift:F2}");
+        }
+
         return new Vector2(moveVec.x, moveVec.z);
+    }
+
+    /// <summary>
+    /// Where the pawn will be <paramref name="t"/> seconds from now (xz only). We walk out from
+    /// its real DrawPos along the heading to nextCell and keep going PAST it instead of snapping
+    /// to that cell's center. easy math no private path internals, keep it boring.
+    /// </summary>
+    private Vector3 PredictPawnPos(float t)
+    {
+        Vector3 pos = targetPawn.DrawPos;
+        pos.y = 0f;
+        if (targetPawn.pather == null || !targetPawn.pather.Moving || t <= 0f)
+        {
+            return pos;
+        }
+
+        Vector3 next = targetPawn.pather.nextCell.ToVector3Shifted();
+        next.y = 0f;
+        Vector3 heading = next - pos;
+        if (heading.sqrMagnitude < 1e-6f)
+        {
+            heading = (targetPawn.pather.nextCell - targetPawn.Position).ToVector3();
+            heading.y = 0f;
+        }
+        if (heading.sqrMagnitude < 1e-6f)
+        {
+            return pos;
+        }
+
+        float travel = CE_Utility.GetMoveSpeed(targetPawn) * t;
+        return pos + heading.normalized * travel;
     }
 
     /// <returns>Angle Vector2 in degrees</returns>
