@@ -8,12 +8,12 @@ public class StatPart_ExtendedMagazine : StatPart
 {
     public override string ExplanationPart(StatRequest req)
     {
-        if (!req.HasThing || !(req.Thing is ThingWithComps thingWithComps) || !thingWithComps.TryGetComp<CompUniqueWeapon>(out var comp))
+        if (!req.HasThing || req.Thing is not ThingWithComps thingWithComps || !thingWithComps.TryGetComp<CompUniqueWeapon>(out var comp))
         {
             return null;
         }
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
         foreach (WeaponTraitDef trait in comp.TraitsListForReading)
         {
             if (trait is CustomWeaponTraitDef custom)
