@@ -541,7 +541,6 @@ public class Verb_LaunchProjectileCE : Verb
             // Lead a moving target
             if (!isInstant)
             {
-
                 newTargetLoc += report.GetRandLeadVec();
             }
 
@@ -668,6 +667,8 @@ public class Verb_LaunchProjectileCE : Verb
             report.sightsEfficiency = 0;
         }
         report.shotDist = (targetCell - caster.Position).LengthHorizontal;
+        Vector3 shotOrigin = caster.TrueCenter();
+        report.shotSource.Set(shotOrigin.x, shotOrigin.z);
         report.maxRange = EffectiveRange;
         report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
