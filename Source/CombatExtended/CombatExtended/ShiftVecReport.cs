@@ -120,7 +120,7 @@ public class ShiftVecReport
     }
 
     // Leading variables
-    public Vector2 shotSource = new Vector2(0, 0); // where the round left the muzzle/eye (xz). We need it to do the flight-time math without losing our minds
+    public Vector2 shotSource = new Vector2(0, 0); // muzzle/eye position (xz) at fire time, used for time-of-flight
     public float shotSpeed = 0f;
     private bool targetIsMoving
     {
@@ -227,11 +227,9 @@ public class ShiftVecReport
             return new Vector2(0, 0);
         }
 
-        // Iterate the flight-time: a moving target won't be where we THINK it'll be, so we loop
-        // twice and call it converged DrawPos is the pawn's real tweened spot
-        // and already knows how far into the step it is, so no poking at pather
-        // just the public nextCell. This is the bit that used to calmly aim at the next tile
-        // center; now we extrapolate from where the poor sod is.
+        // Iterate the flight time - the target moves while the round flies, so refine the impact
+        // point a couple of times. DrawPos already encodes how far into the current step the pawn
+        // is, so the public nextCell is all we need (no private pather internals).
         float t = shotSpeed > 0f ? shotDist / shotSpeed : 0f;
         Vector3 predicted = PredictPawnPos(t);
         for (int i = 0; i < 2 && shotSpeed > 0f; i++)
@@ -255,8 +253,7 @@ public class ShiftVecReport
             return new Vector2(0, 0);
         }
 
-        // Pile the random accuracy-driven lead error on top of the systematic guess, otherwise
-        // decent shooters would just auto-lock onto moving targets
+        // Keep the random accuracy-driven lead error on top of the systematic prediction.
         float mag = delta.magnitude + Rand.Range(-leadShift, leadShift);
         Vector3 moveVec = dir.normalized * mag;
 
@@ -270,9 +267,8 @@ public class ShiftVecReport
     }
 
     /// <summary>
-    /// Where the pawn will be <paramref name="t"/> seconds from now (xz only). We walk out from
-    /// its real DrawPos along the heading to nextCell and keep going PAST it instead of snapping
-    /// to that cell's center. easy math no private path internals, keep it boring.
+    /// The pawn's future xz position <paramref name="t"/> seconds from now, extrapolated from its
+    /// real DrawPos along the heading to nextCell.
     /// </summary>
     private Vector3 PredictPawnPos(float t)
     {

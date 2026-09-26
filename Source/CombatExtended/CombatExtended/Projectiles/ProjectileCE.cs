@@ -979,11 +979,8 @@ public abstract class ProjectileCE : ThingWithComps
 
         // Iterate through all cells between the last and the new position
         // INCLUDING[!!!] THE LAST AND NEW POSITIONS!
-        // We build this list BY HAND: a loop, a Contains() check to skip duplicates, then a
-        // Sort(). Why not just use LINQ's Union/Distinct/OrderBy? Because every LINQ call builds
-        // a brand-new throwaway list (fresh objects the garbage collector has to clean up), and
-        // this runs many times every tick. On our one and only core that trash piles up fast, so
-        // instead we clear and refill ONE reusable list.
+        // Built by hand (loop + Contains + Sort) instead of LINQ's Union/Distinct/OrderBy: every
+        // LINQ call allocates a new list, and this runs many times per tick. One list is reused.
         collisionCells.Clear();
         foreach (var lineCell in GenSight.PointsOnLineOfSight(lastPosIV3, newPosIV3))
         {
@@ -1019,10 +1016,8 @@ public abstract class ProjectileCE : ThingWithComps
             }
         }
 
-        // The intended target gets ONE clean test per tick against its real DrawPos bounds,
-        // instead of hoping its thingGrid entry (which parks at the OLD tile until the move's
-        // done) happens to sit on a cell we walk through. Static / cell-only => null, so this
-        // just no-ops for them. Ugh, the usual grid lag.
+        // Test the intended target against its real DrawPos bounds as well: a moving pawn's
+        // thingGrid entry lags on the old tile, so the cell scan above can miss it.
         if (!collided
             && intendedTargetThing is Pawn intendedPawn
             && intendedPawn != launcher
@@ -1053,9 +1048,8 @@ public abstract class ProjectileCE : ThingWithComps
     private static readonly List<Thing> potentialCollisionCandidates = new List<Thing>();
 
     /// <summary>
-    /// Pooled cell lists for the per-tick collision scans. We reuse them instead of handing the
-    /// GC a fresh LINQ buffet every single tick like some kind of monster. Two lists because the
-    /// nested blocker scan runs INSIDE the outer one and would happily stomp its own enumerator.
+    /// Pooled cell lists for the per-tick collision scans, reused to avoid per-tick allocations.
+    /// Separate lists because the nested blocker scan runs inside the outer one.
     /// </summary>
     private static readonly List<IntVec3> collisionCells = new List<IntVec3>();
     private static readonly List<IntVec3> blockerCheckCells = new List<IntVec3>();
@@ -1075,6 +1069,34 @@ public abstract class ProjectileCE : ThingWithComps
     }
 
     /// <summary>
+    /// True if a pawn next to <paramref name="cell"/> is mid-step (drawn off its registered cell).
+    /// </summary>
+    private bool HasMidStepPawnAdjacent(IntVec3 cell)
+    {
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int z = -1; z <= 1; z++)
+            {
+                IntVec3 c = cell + new IntVec3(x, 0, z);
+                if (!c.InBounds(Map))
+                {
+                    continue;
+                }
+                // Only a walking pawn can be off its cell, and DrawPos isn't cheap - so check that
+                // first and spare ourselves the lookup for everyone standing still, i.e. everyone.
+                if (c.GetFirstPawn(Map) is Pawn pawn
+                    && pawn.pather != null
+                    && pawn.pather.Moving
+                    && pawn.DrawPos.ToIntVec3() != pawn.Position)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
     /// Checks whether a collision occurs along flight path within this cell.
     /// </summary>
     /// <param name="cell">Where to check for collisions in</param>
@@ -1087,7 +1109,10 @@ public abstract class ProjectileCE : ThingWithComps
         }
         var roofChecked = false;
 
-        if (Map.GetLightingTracker().HighestCoverAt(cell) < Mathf.Min(LastPos.y, ExactPosition.y))
+        // Cover is looked up on the pawn's registered cell, so a pawn mid-step makes the cell it's
+        // walking into look empty. Don't early-out when one of those is next door.
+        if (Map.GetLightingTracker().HighestCoverAt(cell) < Mathf.Min(LastPos.y, ExactPosition.y)
+            && !HasMidStepPawnAdjacent(cell))
         {
             return false;
         }
@@ -1102,7 +1127,7 @@ public abstract class ProjectileCE : ThingWithComps
             }
         }
 
-        //Find pawns in adjacent cells and append them to main list
+        //Find pawns around the path and append them to main list
         var rot4 = Rot4.FromAngleFlat(shotRotation);
         if (rot4.rotInt > 1)
         {
@@ -1115,25 +1140,36 @@ public abstract class ProjectileCE : ThingWithComps
             Map.debugDrawer.debugCells.Clear();
             Map.debugDrawer.DebugDrawerUpdate();
         }
-        //Iterate through adjacent cells and find all the pawns
-        foreach (var curCell in GenAdj.CellsAdjacentCardinal(cell, rot4, new IntVec2(collisionCheckSize, 0)))
+        // Sweep a filled box around the path cell. GenAdj.CellsAdjacentCardinal only walks the
+        // perimeter, so a pawn mid-step that moved sideways into the path (still registered on
+        // the side cell) was never scanned and the bullet passed through it. Same footprint.
+        int halfAcross = collisionCheckSize / 2 + 1; // 3 -> 7 cells wide, across the shot line
+        int halfAlong = 1;                           // +-1 cell up/down the shot line
+        bool shotIsHorizontal = rot4 == Rot4.East;   // rot4 was already folded to North/East above
+        int extentX = shotIsHorizontal ? halfAlong : halfAcross;
+        int extentZ = shotIsHorizontal ? halfAcross : halfAlong;
+        for (int x = cell.x - extentX; x <= cell.x + extentX; x++)
         {
-            if (curCell == cell || !curCell.InBounds(Map))
+            for (int z = cell.z - extentZ; z <= cell.z + extentZ; z++)
             {
-                continue;
-            }
-
-            foreach (var thing in Map.thingGrid.ThingsListAtFast(curCell))
-            {
-                if (thing is Pawn)
+                var curCell = new IntVec3(x, 0, z);
+                if (curCell == cell || !curCell.InBounds(Map))
                 {
-                    potentialCollisionCandidates.AddDistinct(thing);
+                    continue;
                 }
-            }
 
-            if (Controller.settings.DebugDrawInterceptChecks)
-            {
-                Map.debugDrawer.FlashCell(curCell, 0.7f);
+                foreach (var thing in Map.thingGrid.ThingsListAtFast(curCell))
+                {
+                    if (thing is Pawn)
+                    {
+                        potentialCollisionCandidates.AddDistinct(thing);
+                    }
+                }
+
+                if (Controller.settings.DebugDrawInterceptChecks)
+                {
+                    Map.debugDrawer.FlashCell(curCell, 0.7f);
+                }
             }
         }
 
@@ -1161,11 +1197,20 @@ public abstract class ProjectileCE : ThingWithComps
                 continue;
             }
 
-            // Check for collision
-            if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
+            // Check for collision. Measure the min-collision distance from DrawPos (not Position)
+            // to match the hitbox test below - a moving pawn's Position still lags on the old cell.
+            if (thing == intendedTargetThing
+                || def.projectile.alwaysFreeIntercept
+                || (thing.DrawPos - OriginIV3.ToVector3Shifted()).MagnitudeHorizontal() >= minCollisionDistance)
             {
                 if (!CanCollideWith(thing, out _))
                 {
+                    if (Controller.settings.DebugDrawInterceptChecks && thing is Pawn dbgPawn)
+                    {
+                        Bounds dbgBounds = CE_Utility.GetBoundsFor(dbgPawn);
+                        bool dbgRay = dbgBounds.IntersectRay(ShotLine, out float dbgDist);
+                        Log.Message($"[CE-Debug] pawn {dbgPawn.LabelShort} miss: pos={dbgPawn.Position} draw={dbgPawn.DrawPos.ToString("F2")} posture={dbgPawn.GetPosture()} downed={dbgPawn.Downed} crouch={dbgPawn.IsCrouching()} bC={dbgBounds.center.ToString("F2")} bS={dbgBounds.size.ToString("F2")} rayHit={dbgRay} d={dbgDist:F3} last={LastPos.ToString("F2")} exact={ExactPosition.ToString("F2")} origin={origin.ToString("F2")}");
+                    }
                     continue;
                 }
                 if (BlockerRegistry.CheckForCollisionBetweenCallback(this, LastPos, thing.TrueCenter()))
