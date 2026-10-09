@@ -485,7 +485,7 @@ public abstract class ProjectileCE : ThingWithComps
         float aperatureSize = 0.03f,
         Thing equipment = null,
         bool useSameHeight = false,
-        float? effectiveRange = null
+        float effectiveRange = 0f
     )
     {
 
@@ -499,18 +499,7 @@ public abstract class ProjectileCE : ThingWithComps
         Map map = launcher.Map;
 
         // import the effRange if weapon have any offset (e.g. the firing verb's EffectiveRange)
-        float effRange;
-        {
-            effRange = verbProps.range;
-            if (equipment != null)
-            {
-                effRange *= equipment.GetStatValue(StatDefOf.RangedWeapon_RangeMultiplier);
-            }
-            if (pprops != null)
-            {
-                effRange = effRange * pprops.effectiveRangeMultiplier + pprops.effectiveRangeOffset;
-            }
-        }
+        float effRange = effectiveRange > 0f ? effectiveRange : verbProps.range;
 
         Vector3 destination = direction * effRange + origin3;
         this.shotAngle = shotAngle;
