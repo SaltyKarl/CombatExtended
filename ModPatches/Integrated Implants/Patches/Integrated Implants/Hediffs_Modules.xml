@@ -5,26 +5,8 @@
 		<mods>
 			<li>Medical System Expansion 2</li>
 		</mods>
-		<match Class="PatchOperationSequence">
+		<nomatch Class="PatchOperationSequence">
 			<operations>
-
-				<!-- Remove Local Armor -->
-				<li Class="PatchOperationRemove">
-					<xpath>
-						Defs/ThingDef[
-						defName="LTS_ModuleEye_LocalArmour" or
-						defName="LTS_ModuleArm_LocalArmour" or
-						defName="LTS_ModuleLeg_LocalArmour" or
-						defName="LTS_RemoveImplantedArmorPiercing" or
-						defName="LTS_InstallImplantedCluster" or
-						defName="LTS_RemoveImplantedCluster"]|
-						Defs/HediffDef[
-						defName="LTS_ModuleEye_LocalArmour" or
-						defName="LTS_ModuleArm_LocalArmour" or
-						defName="LTS_ModuleLeg_LocalArmour"
-						]
-					</xpath>
-				</li>
 
 				<!-- Nightvision Module -->
 				<li Class="PatchOperationReplace">
@@ -192,7 +174,7 @@
 				<!-- Dart Arm -->
 
 			</operations>
-		</match>
+		</nomatch>
 	</Operation>
 
 </Patch>
