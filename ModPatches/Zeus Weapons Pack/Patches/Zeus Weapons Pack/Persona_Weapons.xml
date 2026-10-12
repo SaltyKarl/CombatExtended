@@ -494,17 +494,15 @@
 				</li>
 
 				<!-- Zeus Standard Bladelink -->
+				 <li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="CAT_ZeusStandardBladelink"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]</xpath>
+				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="CAT_ZeusStandardBladelink"]/statBases</xpath>
 					<value>
 						<Bulk>20</Bulk>
 						<MeleeCounterParryBonus>0.83</MeleeCounterParryBonus>
 					</value>
-				</li>
-
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="CAT_ZeusStandardBladelink"]/comps/li[@Class="MVCF.Comps.CompProperties_VerbProps"]
-					</xpath>
 				</li>
 
 				<li Class="PatchOperationRemove">
