@@ -181,7 +181,7 @@
 					<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 					<burstShotCount>3</burstShotCount>
 					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
-					<range>52</range>
+					<range>55</range>
 					<soundCast>RS_ShotJI</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>11</muzzleFlashScale>
@@ -245,7 +245,7 @@
 					<defaultProjectile>Bullet_JI_AMR</defaultProjectile>
 					<warmupTime>3.525</warmupTime>
 					<ammoConsumedPerShotCount>30</ammoConsumedPerShotCount>
-					<range>68</range>
+					<range>75</range>
 					<soundCast>RS_ShotJI</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>15</muzzleFlashScale>
@@ -325,7 +325,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_JISiegeRound</defaultProjectile>
 					<warmupTime>2.075</warmupTime>
-					<range>48</range>
+					<range>25</range>
 					<ammoConsumedPerShotCount>80</ammoConsumedPerShotCount>
 					<soundCast>RS_ShotJI</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -391,7 +391,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_JI_Suppressor</defaultProjectile>
 					<warmupTime>2.25</warmupTime>
-					<range>62</range>
+					<range>35</range>
 					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 					<burstShotCount>20</burstShotCount>
 					<soundCast>RS_ShotMuspell</soundCast>
@@ -459,7 +459,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_JI_Slag</defaultProjectile>
 					<warmupTime>1.0</warmupTime>
-					<range>14</range>
+					<range>21</range>
 					<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
 					<soundCast>RS_ShotFafnir</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>

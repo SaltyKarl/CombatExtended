@@ -124,7 +124,7 @@
 					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
 					<burstShotCount>5</burstShotCount>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-					<range>44</range>
+					<range>55</range>
 					<soundCast>ImpactM</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
@@ -177,7 +177,7 @@
 					<defaultProjectile>Bullet_TEPowerCharge_KE</defaultProjectile>
 					<warmupTime>0.4</warmupTime>
 					<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
-					<range>12</range>
+					<range>25</range>
 					<soundCast>ImpactM</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>8</muzzleFlashScale>
@@ -228,7 +228,7 @@
 					<defaultProjectile>Bullet_TEEnergyCanister_KE</defaultProjectile>
 					<ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
 					<warmupTime>0.9</warmupTime>
-					<range>32</range>
+					<range>45</range>
 					<soundCast>ImpactB</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>12</muzzleFlashScale>
@@ -279,7 +279,7 @@
 					<defaultProjectile>Bullet_TEConcentratedPowerCharge_KE</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
 					<ammoConsumedPerShotCount>6</ammoConsumedPerShotCount>
-					<range>75</range>
+					<range>86</range>
 					<soundCast>ImpactB</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>12</muzzleFlashScale>
@@ -391,7 +391,7 @@
 					<burstShotCount>50</burstShotCount>
 					<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 					<ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
-					<range>44</range>
+					<range>75</range>
 					<soundCast>ImpactB</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>12</muzzleFlashScale>
