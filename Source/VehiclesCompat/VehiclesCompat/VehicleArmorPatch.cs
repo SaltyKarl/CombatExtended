@@ -78,7 +78,7 @@ public static class VehicleArmorPatch
                 for (int z = 1; z < max_z - 1; z++)
                 {
                     IntVec2 innerCell = new IntVec2(x, z);
-                    if (stats.componentLocations.TryGetValue(innerCell, out List<VehicleComponent> maybeUnhittable))
+                    if (stats.componentLocations.TryGetValue(innerCell, out List<VehicleComponent>? maybeUnhittable))
                     {
                         foreach (var comp in maybeUnhittable)
                         {
@@ -161,7 +161,7 @@ public static class VehicleArmorPatch
                 }
                 stats.debugCellHighlight.Add(new Pair<IntVec2, int>(renderCell, VehicleStatHandler.TicksHighlighted));
             }
-            if (stats.componentLocations.TryGetValue(cell2, out List<VehicleComponent> components))
+            if (stats.componentLocations.TryGetValue(cell2, out List<VehicleComponent>? components))
             {
                 bool penetrated = TryPenetrateComponents(stats, ref dinfo, components, hitDepth, report);
                 report?.AppendLine($"penetrated? {penetrated}");
