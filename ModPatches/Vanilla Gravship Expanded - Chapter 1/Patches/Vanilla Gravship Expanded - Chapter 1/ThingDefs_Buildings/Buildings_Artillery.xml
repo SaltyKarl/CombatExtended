@@ -81,6 +81,15 @@
 		<turretGunDefName>VGE_Gun_GaussGun</turretGunDefName>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_GaussGun"]/building</xpath>
+		<value>
+			<buildingTags>
+				<li>CE_Autoloader_155mmHowitzerShell</li>
+			</buildingTags>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_GaussGun</defName>
 		<statBases>
@@ -113,7 +122,7 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>24</magazineSize>
+			<magazineSize>5</magazineSize>
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_155mmHowitzerShell_GaussGun</ammoSet>
 		</AmmoUser>
@@ -150,6 +159,7 @@
 		<defName>VGE_Gun_JavelinPod</defName>
 		<statBases>
 			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+			<ShotSpread>2.5</ShotSpread>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -173,14 +183,10 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>60</magazineSize>
+			<magazineSize>30</magazineSize>
 			<reloadTime>6.5</reloadTime>
 			<ammoSet>AmmoSet_VGE_Bullet_JavelinPod</ammoSet>
 		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-		</FireModes>
 	</Operation>	
 
 	<Operation Class="PatchOperationAdd">
@@ -222,6 +228,7 @@
 		<statBases>
 			<!-- Based on VEFS Graser Cannon Complex patch -->
 			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<AimingAccuracy>3.8</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -243,7 +250,7 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
-            <circularError>0</circularError>
+            <circularError>3</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>

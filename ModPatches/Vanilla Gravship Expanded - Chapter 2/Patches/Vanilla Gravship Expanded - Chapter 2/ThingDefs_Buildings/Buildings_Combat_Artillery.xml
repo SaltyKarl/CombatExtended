@@ -25,7 +25,8 @@
 			Defs/ThingDef[
 				defName = "VGE_GaussHowitzer" or
 				defName = "VGE_JavelinLauncher" or
-				defName = "VGE_AnticraftEmitter"
+				defName = "VGE_AnticraftEmitter" or
+				defName = "VGE_AstrofireLauncher"
 			]/comps/li[@Class = "VanillaGravshipExpanded.CompProperties_WorldArtillery"]
 		</xpath>
 		<attribute>Class</attribute>
@@ -38,7 +39,8 @@
 			Defs/ThingDef[
 				defName = "VGE_Gun_GaussHowitzer" or
 				defName = "VGE_Gun_JavelinLauncher" or
-				defName = "VGE_Gun_AnticraftEmitter"
+				defName = "VGE_Gun_AnticraftEmitter" or
+				defName = "VGE_Gun_AstrofireLauncher"
 			]
 		</xpath>
 		<value>
@@ -55,7 +57,8 @@
 		<xpath>Defs/ThingDef[
 			defName = "VGE_Gun_GaussHowitzer" or
 			defName = "VGE_Gun_JavelinLauncher" or
-			defName = "VGE_Gun_AnticraftEmitter"
+			defName = "VGE_Gun_AnticraftEmitter" or
+			defName = "VGE_Gun_AstrofireLauncher"
 			]/verbs</xpath>
 	</Operation>
 
@@ -76,6 +79,15 @@
 		<turretGunDefName>VGE_Gun_GaussHowitzer</turretGunDefName>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_GaussHowitzer"]/building</xpath>
+		<value>
+			<buildingTags>
+				<li>CE_Autoloader_155mmHowitzerShell</li>
+			</buildingTags>
+		</value>
+	</Operation>
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VGE_Gun_GaussHowitzer</defName>
 		<statBases>
@@ -90,7 +102,7 @@
 			<range>99999</range>
 			<minRange>12</minRange>
 			<burstShotCount>3</burstShotCount>
-			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
 			<soundCast>VGE_GravshipHowitzer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -107,7 +119,7 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>24</magazineSize>
+			<magazineSize>15</magazineSize>
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_155mmHowitzerShell_GaussHowitzer</ammoSet>
 		</AmmoUser>
@@ -133,6 +145,7 @@
 		<statBases>
 			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
 			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShotSpread>2.5</ShotSpread>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -157,14 +170,10 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>120</magazineSize>
+			<magazineSize>60</magazineSize>
 			<reloadTime>6.5</reloadTime>
 			<ammoSet>AmmoSet_VGE_Bullet_JavelinPod</ammoSet>
 		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-		</FireModes>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -194,6 +203,7 @@
 		<defName>VGE_Gun_AnticraftEmitter</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			<AimingAccuracy>3.8</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -217,11 +227,108 @@
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
-            <circularError>0</circularError>
+
+            <circularError>3</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 	</Operation>
 	
+	<!-- VGE_AstrofireLauncher -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[defName = "VGE_AstrofireLauncher"]/thingClass 
+		</xpath>
+		<value>
+			<thingClass>CombatExtended.Compatibility.VGECompat.Building_JavelinPodCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName = "VGE_AstrofireLauncher"]</xpath>
+		<value>
+			<li Class="CombatExtended.NonSnapTurretExtension">
+				<speed>0.28</speed>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.Compatibility.VGECompat.PatchOperationMakeVGEBarrelsCompatible">
+		<turretDefName>VGE_AstrofireLauncher</turretDefName>
+		<turretGunDefName>VGE_Gun_AstrofireLauncher</turretGunDefName>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VGE_Gun_AstrofireLauncher</defName>
+		<statBases>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+			<ShotSpread>2.5</ShotSpread>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
+			<defaultProjectile>VGE_Bullet_AstrofireLauncher_CE</defaultProjectile>
+			<range>99999</range>
+			<minRange>14</minRange>
+			<burstShotCount>4</burstShotCount>
+			<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+			<soundCast>VGE_JavelinLauncher_Cast</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+			<requireLineOfSight>false</requireLineOfSight>
+			<consumeFuelPerShot>30</consumeFuelPerShot>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+
+			<circularError>4</circularError>
+			<hasStandardCommand>true</hasStandardCommand>
+			<warmupTime>3.6</warmupTime>
+			<recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>6.5</reloadTime>
+			<ammoSet>AmmoSet_VGE_Bullet_AstrofireLauncher</ammoSet>
+		</AmmoUser>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VGE_Gun_AstrofireLauncher"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+
+	<!-- Gravmine -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_Gravmine"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<!-- Default damage for vanilla ied trap is 50, just like VGE_Gravmine, so I reproduced it -->
+				<damageAmountBase>270</damageAmountBase>
+				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+				<wickTicks>60</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>16</Fragment_Large>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</Operation>
+
 </Patch>

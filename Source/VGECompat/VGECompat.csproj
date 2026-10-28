@@ -44,15 +44,15 @@
         </Reference>
     </ItemGroup>
 
-    <!-- VGE dll was stripped and publicized to avoid adding ~300Ko to CE. -->
-    <Target Name="RemoveIgnoresAccessChecksToAttributeCs" AfterTargets="PublicizeAssemblies">
-        <ItemGroup>
-            <FilesToRemove Include="@(Compile)" Condition="'%(Filename)' == 'IgnoresAccessChecksToAttribute'" />
-        </ItemGroup>
-        <ItemGroup>
-            <Compile Remove="@(FilesToRemove)" />
-        </ItemGroup>
-    </Target>
+  <ItemGroup>
+    <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Publicize Include="Assembly-CSharp" />
+	</ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
