@@ -14,6 +14,7 @@ using SaveOurShip2.Vehicles;
 using Vehicles.World;
 
 namespace CombatExtended.Compatibility.SOS2Compat;
+
 public class Verb_ShootShipCE : Verb_ShootCE
 {
     // This class combines functionality from SaveOurShip2.Verb_LaunchProjectileShip with Verb_ShootCE essentially making a hybrid verb that chooses its logic based on
@@ -442,14 +443,14 @@ public class Verb_ShootShipCE : Verb_ShootCE
         {
             //pods
             /*List<TravelingTransportPods> podsinrange = new List<TravelingTransportPods>();
-				foreach (TravelingTransportPods obj in Find.WorldObjects.TravelingTransportPods)
-				{
-					float rng = (float)Traverse.Create(obj).Field("traveledPct").GetValue();
-					if (obj.destinationTile == turret.Map.Parent.Tile && obj.Faction != mapComp.ShipFaction && rng > 0.75)
-					{
-						podsinrange.Add(obj);
-					}
-				}*/
+                                foreach (TravelingTransportPods obj in Find.WorldObjects.TravelingTransportPods)
+                                {
+                                        float rng = (float)Traverse.Create(obj).Field("traveledPct").GetValue();
+                                        if (obj.destinationTile == turret.Map.Parent.Tile && obj.Faction != mapComp.ShipFaction && rng > 0.75)
+                                        {
+                                                podsinrange.Add(obj);
+                                        }
+                                }*/
             if (mapComp.TargetMapComp.TorpsInRange.Any() && Rand.Chance(0.1f))
             {
                 ShipCombatProjectile projtr = mapComp.TargetMapComp.TorpsInRange.RandomElement();
@@ -519,7 +520,7 @@ public class Verb_ShootShipCE : Verb_ShootCE
                                 }
                             }
                             /*foreach (Thing cargo in shuttleHit.GetDirectlyHeldThings())
-									cargo.Kill();*/
+                                                                        cargo.Kill();*/
                         }
                         else if (shuttleHit.statHandler.GetStatValue(VehicleStatDefOf.BodyIntegrity) <= ((CompShuttleLauncher)shuttleHit.CompVehicleLauncher).retreatAtHealth)
                         {
