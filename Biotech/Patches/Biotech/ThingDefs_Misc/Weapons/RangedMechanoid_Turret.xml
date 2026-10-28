@@ -16,6 +16,7 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_8x40mmCharged</defaultProjectile>
 			<range>55</range>
+			<minRange>3</minRange>
 			<burstShotCount>1</burstShotCount>
 			<soundCast>Shot_ChargeBlaster</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
