@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Text;
 using System.Diagnostics;
@@ -24,7 +25,7 @@ public static class VehicleArmorPatch
         {
             return true;
         }
-        StringBuilder report = VehicleMod.settings.debug.debugLogging ? new StringBuilder() : null;
+        StringBuilder report = (VehicleMod.settings.debug.debugLogging ? new StringBuilder() : null)!;
         __instance.ApplyDamageCE(ref dinfo, hitCell, report);
         if (report != null)
         {
@@ -60,7 +61,7 @@ public static class VehicleArmorPatch
         report?.AppendLine($"DamageDef: {dinfo.Def}");
         report?.AppendLine($"HitCell: {hitCell}");
 
-        damage = AdjustDamage(damage, dinfo, report);
+        damage = AdjustDamage(damage, dinfo, report!);
 
         if (damage <= 0)
         {
@@ -163,7 +164,7 @@ public static class VehicleArmorPatch
             }
             if (stats.componentLocations.TryGetValue(cell2, out List<VehicleComponent>? components))
             {
-                bool penetrated = TryPenetrateComponents(stats, ref dinfo, components, hitDepth, report);
+                bool penetrated = TryPenetrateComponents(stats, ref dinfo, components, hitDepth, report!);
                 report?.AppendLine($"penetrated? {penetrated}");
                 if (!inside) // hit outside
                 {
@@ -203,7 +204,7 @@ public static class VehicleArmorPatch
                             report?.AppendLine($"Exiting vehicle");
                             if (Controller.settings.fragmentsFromVehicles)
                             {
-                                SpawnFragments(ref dinfo, direction, stats, cell2 + new IntVec2(vehicle.Position.x, vehicle.Position.z), report);
+                                SpawnFragments(ref dinfo, direction, stats, cell2 + new IntVec2(vehicle.Position.x, vehicle.Position.z), report!);
                             }
 
                             break;
@@ -249,12 +250,12 @@ public static class VehicleArmorPatch
                 }
                 if (hcount == 1 && Controller.settings.hitRandomVehicleComponents) // our first time through, never hit anything.
                 {
-                    TryPenetrateComponents(stats, ref dinfo, unhittableComponents, hitDepth, report);
+                    TryPenetrateComponents(stats, ref dinfo, unhittableComponents, hitDepth, report!);
                     break;
                 }
                 if (Controller.settings.fragmentsFromVehicles)
                 {
-                    SpawnFragments(ref dinfo, direction, stats, cell2 + new IntVec2(vehicle.Position.x, vehicle.Position.z), report);
+                    SpawnFragments(ref dinfo, direction, stats, cell2 + new IntVec2(vehicle.Position.x, vehicle.Position.z), report!);
                 }
             }
         }
@@ -334,7 +335,7 @@ public static class VehicleArmorPatch
         foreach (var component in componentsAtHitDepth)
         {
             report?.AppendLine($"Hitting Component {component.props.label}");
-            if (HitComponent(component, ref dinfo, report))
+            if (HitComponent(component, ref dinfo, report!))
             {
                 report?.AppendLine($"Component did not stop projectile");
                 return false;
