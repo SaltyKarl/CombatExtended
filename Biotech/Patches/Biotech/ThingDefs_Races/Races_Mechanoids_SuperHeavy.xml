@@ -307,12 +307,11 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>10</power>
-					<cooldownTime>2.0</cooldownTime>
+					<power>25</power>
+					<cooldownTime>3.01</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
-					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>13.5</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
 			</tools>
 		</value>
