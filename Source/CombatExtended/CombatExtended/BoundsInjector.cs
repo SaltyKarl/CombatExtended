@@ -20,23 +20,57 @@ public static class BoundsInjector
 
     private static ConcurrentDictionary<string, Vector2> boundMap = [];
     private static ConcurrentDictionary<Texture2D, (Color[] pixels, int width, int height)> _textureCache = [];
+    private static int _textureCacheVersion;
+
+    // Guess what a thing fills when we have no idea what it looks like. Full cell for plants, half width for pawns.
+    private static readonly Vector2 PlantFallbackBounds = Vector2.one;
+    private static readonly Vector2 PawnFallbackBounds = new Vector2(0.5f, 1f);
+
+    // Guesses live here instead of boundMap, so a bad texture never counts as a real measurement. Keyed per type, retried only when new textures land.
+    private static readonly ConcurrentDictionary<(string path, GraphicType type), (Vector2 bounds, int version)> _fallbackBounds = [];
 
     public static Vector2 BoundMap(Graphic graphic, GraphicType type)
     {
-        if (boundMap.TryGetValue(graphic.path, out Vector2 cachedBounds))
+        string path = graphic?.path;
+        var key = (path: path ?? string.Empty, type);
+
+        if (!string.IsNullOrEmpty(path))
         {
-            return cachedBounds;
+            if (boundMap.TryGetValue(path, out Vector2 cachedBounds))
+            {
+                return cachedBounds;
+            }
+
+            // Already guessed for this texture set? Same guess, no retry, no exception spam.
+            if (_fallbackBounds.TryGetValue(key, out var failure) && failure.version == _textureCacheVersion)
+            {
+                return failure.bounds;
+            }
         }
 
         try
         {
+            if (graphic == null)
+            {
+                throw new ArgumentNullException(nameof(graphic));
+            }
+
             Vector2 bounds = ExtractBounds(graphic, type);
-            boundMap[graphic.path] = bounds;
+            if (!string.IsNullOrEmpty(path))
+            {
+                boundMap[path] = bounds;
+                _fallbackBounds.TryRemove(key, out _);
+            }
             return bounds;
         }
         catch (Exception e)
         {
-            throw new Exception("BoundMap(,)", e);
+            // Mod swapped in a texture we never collected. Guess, log once, retry on next texture load.
+            var fallback = type == GraphicType.Plant ? PlantFallbackBounds : PawnFallbackBounds;
+            Log.ErrorOnce($"Combat Extended :: no bounds for {type} '{path}', using fallback ({e.GetBaseException().Message})",
+                (path ?? nameof(BoundMap)).GetHashCode());
+            _fallbackBounds[key] = (fallback, _textureCacheVersion);
+            return fallback;
         }
     }
 
@@ -172,6 +206,7 @@ public static class BoundsInjector
                 if (!request.hasError)
                 {
                     _textureCache[capturedTex] = (CE_Utility.ConvertToColors(request.GetData<Color32>()), w, h);
+                    Interlocked.Increment(ref _textureCacheVersion); // tells failed bound lookups there is something new to try
                 }
                 else
                 {
