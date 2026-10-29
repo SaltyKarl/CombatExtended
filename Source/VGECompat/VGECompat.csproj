@@ -44,6 +44,16 @@
         </Reference>
     </ItemGroup>
 
+    <!-- VGE ships its own IgnoresAccessChecksToAttribute, so drop the publicizer's copy. -->
+    <Target Name="RemoveIgnoresAccessChecksToAttributeCs" AfterTargets="PublicizeAssemblies">
+        <ItemGroup>
+            <FilesToRemove Include="@(Compile)" Condition="'%(Filename)' == 'IgnoresAccessChecksToAttribute'" />
+        </ItemGroup>
+        <ItemGroup>
+            <Compile Remove="@(FilesToRemove)" />
+        </ItemGroup>
+    </Target>
+
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
             <PrivateAssets>all</PrivateAssets>
