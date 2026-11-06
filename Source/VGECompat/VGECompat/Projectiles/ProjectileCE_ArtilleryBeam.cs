@@ -1,6 +1,7 @@
 ﻿using CombatExtended.Lasers;
 using RimWorld;
 using UnityEngine;
+using VanillaGravshipExpanded;
 using Verse;
 
 #region License

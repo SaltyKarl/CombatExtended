@@ -98,7 +98,7 @@
 			<range>99999</range>
 			<minRange>11.9</minRange>
 			<burstShotCount>2</burstShotCount>
-			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 			<soundCast>VGE_GravshipHowitzer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>14</muzzleFlashScale>
@@ -115,7 +115,7 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>24</magazineSize>
+			<magazineSize>20</magazineSize>
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_155mmHowitzerShell_GaussGun</ammoSet>
 		</AmmoUser>
@@ -169,7 +169,7 @@
 			<recoilPattern>Mounted</recoilPattern>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>24</magazineSize>
+			<magazineSize>10</magazineSize>
 			<reloadTime>7.8</reloadTime>
 			<ammoSet>AmmoSet_155mmHowitzerShell_GaussGun</ammoSet>
 		</AmmoUser>
@@ -206,6 +206,7 @@
 		<defName>VGE_Gun_EnemyJavelinPod</defName>
 		<statBases>
 			<AimingAccuracy>0.5</AimingAccuracy>
+			<ShotSpread>2.5</ShotSpread>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -234,10 +235,6 @@
 			<reloadTime>6.5</reloadTime>
 			<ammoSet>AmmoSet_VGE_Bullet_JavelinPod</ammoSet>
 		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-		</FireModes>
 	</Operation>	
 
 	<Operation Class="PatchOperationAdd">
@@ -277,7 +274,7 @@
 		<defName>VGE_Gun_EnemyAnticraftCaster</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
-			<AimingAccuracy>0.5</AimingAccuracy>
+			<AimingAccuracy>1.9</AimingAccuracy>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -299,6 +296,7 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 			
+			<circularError>3</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>3.6</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -311,6 +309,13 @@
 		<xpath>Defs/ThingDef[defName = "VGE_EnemyAnticraftBeam"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Compatibility.VGE2Compat.Building_EnemyAnticraftEmitterCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_EnemyAnticraftBeam"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>4500</MaxHitPoints>
 		</value>
 	</Operation>
 
@@ -327,7 +332,7 @@
 		<defName>VGE_Gun_EnemyAnticraftBeam</defName>
 		<statBases>
 			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
-			<AimingAccuracy>2</AimingAccuracy> <!-- Miss radius is handled in the verb -->
+			<AimingAccuracy>3</AimingAccuracy> <!-- Miss radius is handled in the verb -->
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGE2Compat.Verb_AnticraftBeamCE</verbClass>
@@ -343,6 +348,7 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
+			<circularError>4</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>4.0</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -357,6 +363,13 @@
 	</Operation>
 
 	<!-- VGE_EnemyGaussCannon -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "VGE_EnemyGaussCannon"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>6000</MaxHitPoints>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="VGE_EnemyGaussCannon"]</xpath>
@@ -440,10 +453,10 @@
 			<range>99999</range>
 			<minRange>26</minRange>
 			<burstShotCount>3</burstShotCount>
-			<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
 			<soundCast>VGE_GravshipHowitzer</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>10</muzzleFlashScale>
+			<muzzleFlashScale>14</muzzleFlashScale>
 			<requireLineOfSight>false</requireLineOfSight>
 			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 			<isMortar>true</isMortar>
@@ -451,7 +464,7 @@
 				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 
-            <circularError>6</circularError>
+            <circularError>4</circularError>
 			<hasStandardCommand>true</hasStandardCommand>
 			<warmupTime>1.8</warmupTime>
 			<recoilPattern>Mounted</recoilPattern>
@@ -491,6 +504,7 @@
 		<statBases>
 			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
 			<AimingAccuracy>0.5</AimingAccuracy>
+			<ShotSpread>2.5</ShotSpread>
 		</statBases>
 		<Properties>
 			<verbClass>CombatExtended.Compatibility.VGECompat.Verb_ShootWithVGETargeting</verbClass>
@@ -518,10 +532,6 @@
 			<reloadTime>6.5</reloadTime>
 			<ammoSet>AmmoSet_VGE_Bullet_JavelinPod</ammoSet>
 		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<aiUseBurstMode>FALSE</aiUseBurstMode>
-		</FireModes>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -698,6 +708,27 @@
 		<value>
 			<li>
 				<compClass>CombatExtended.CompVerbDisabler</compClass>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- Gravmine -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VGE_AncientGravmine"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>7.9</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<!-- Default damage for vanilla ied trap is 50, just like VGE_Gravmine, so I reproduced it -->
+				<damageAmountBase>270</damageAmountBase>
+				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+				<wickTicks>60</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>16</Fragment_Large>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
 			</li>
 		</value>
 	</Operation>
